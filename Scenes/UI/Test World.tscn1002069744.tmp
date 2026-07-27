@@ -1,0 +1,100 @@
+[gd_scene format=3 uid="uid://fveybfvgsrrw"]
+
+[ext_resource type="Script" uid="uid://cysc4c4wx4ad8" path="res://Scripts/sync_players.gd" id="1_7hvxj"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_k0ktd"]
+sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+
+[sub_resource type="Sky" id="Sky_o05ts"]
+sky_material = SubResource("ProceduralSkyMaterial_k0ktd")
+
+[sub_resource type="Environment" id="Environment_3u288"]
+background_mode = 2
+sky = SubResource("Sky_o05ts")
+glow_enabled = true
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_dyyqa"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_dyyqa"]
+
+[node name="Test World" type="Node3D" unique_id=1794183482]
+script = ExtResource("1_7hvxj")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=392824482]
+environment = SubResource("Environment_3u288")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1818343991]
+transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
+shadow_enabled = true
+
+[node name="Spawn_Spot" type="Marker3D" parent="." unique_id=678712829]
+
+[node name="Menu UI" type="CanvasLayer" parent="." unique_id=2042207019]
+
+[node name="Menu" type="Control" parent="Menu UI" unique_id=505074703]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Room Code" type="TextEdit" parent="Menu UI/Menu" unique_id=463341240]
+layout_mode = 0
+offset_left = 314.0
+offset_top = 437.0
+offset_right = 814.0
+offset_bottom = 487.0
+pivot_offset_ratio = Vector2(0.5, 0.5)
+placeholder_text = "Lobby Code"
+
+[node name="Panel" type="PanelContainer" parent="Menu UI/Menu" unique_id=1385721357]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -41.0
+offset_top = -54.5
+offset_right = 9.0
+offset_bottom = 62.5
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset_ratio = Vector2(0.5, 0.5)
+
+[node name="MarginContainer" type="MarginContainer" parent="Menu UI/Menu/Panel" unique_id=17004887]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Menu UI/Menu/Panel/MarginContainer" unique_id=567500012]
+layout_mode = 2
+
+[node name="Join" type="Button" parent="Menu UI/Menu/Panel/MarginContainer/VBoxContainer" unique_id=601901107]
+layout_mode = 2
+text = "Join"
+
+[node name="Host" type="Button" parent="Menu UI/Menu/Panel/MarginContainer/VBoxContainer" unique_id=675388514]
+layout_mode = 2
+text = "Host"
+
+[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="." unique_id=2053978947]
+_spawnable_scenes = PackedStringArray("uid://cs5uw5ng78niv")
+spawn_path = NodePath("../Spawn_Spot")
+
+[node name="Ground" type="StaticBody3D" parent="." unique_id=260769493]
+transform = Transform3D(200, 0, 0, 0, 1, 0, 0, 0, 200, 0, -10, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ground" unique_id=1958224137]
+shape = SubResource("BoxShape3D_dyyqa")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Ground/CollisionShape3D" unique_id=172349497]
+mesh = SubResource("BoxMesh_dyyqa")
+
+[connection signal="pressed" from="Menu UI/Menu/Panel/MarginContainer/VBoxContainer/Join" to="." method="_on_join_pressed"]
+[connection signal="pressed" from="Menu UI/Menu/Panel/MarginContainer/VBoxContainer/Host" to="." method="_on_host_pressed"]
+[connection signal="spawned" from="MultiplayerSpawner" to="." method="_on_multiplayer_spawner_spawned"]

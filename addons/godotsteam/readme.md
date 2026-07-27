@@ -1,37 +1,22 @@
-# GodotSteam for GDExtension | Community Edition
-An ecosystem of tools for [Godot Engine](https://godotengine.org) and [Valve's Steam](https://store.steampowered.com). For the Windows, Linux, and Mac platforms.
-
-
-Additional Flavors
----
-Standard Module | Standard Plug-ins | Server Module | Server Plug-ins | Examples
---- | --- | --- | --- | ---
-[Godot 2.x](https://codeberg.org/godotsteam/godotsteam/src/branch/godot2) | [GDNative](https://codeberg.org/godotsteam/godotsteam/src/branch/gdnative) | [Server 3.x](https://codeberg.org/godotsteam/godotsteam-server/src/branch/godot3) | [GDNative](https://codeberg.org/godotsteam/godotsteam-server/src/branch/gdnative) | [Skillet](https://codeberg.org/godotsteam/skillet)
-[Godot 3.x](https://codeberg.org/godotsteam/godotsteam/src/branch/godot3) | [GDExtension](https://codeberg.org/godotsteam/godotsteam/src/branch/gdextension) | [Server 4.x](https://codeberg.org/godotsteam/godotsteam-server/src/branch/godot4) | [GDExtension](https://codeberg.org/godotsteam/godotsteam-server/src/branch/gdextension) | [Skillet UGC Editor](https://codeberg.org/godotsteam/skillet/src/branch/ugc_editor)
-[Godot 4.x](https://codeberg.org/godotsteam/godotsteam/src/branch/godot4) | --- | --- | --- | ---
-[MultiplayerPeer](https://codeberg.org/godotsteam/multiplayerpeer)| --- | --- | --- | ---
+`# GodotSteam for GDExtension | Sponsors Edition
+A series of projects for GodotSteam sponsors to check out before release.  You can also guide how upcoming development by submitting pull requests or discussing in our [Discord server](https://discord.gg/SJRSq6K).
 
 
 Documentation
 ---
-[Documentation is available here](https://godotsteam.com/).  You can also check out the Search Help section inside Godot Engine.  [To start, try checking out our tutorial on initializing Steam.](https://godotsteam.com/tutorials/initializing/)  There are additional tutorials, with more in the works.  You can also [check out additional Godot and Steam related videos, text, additional tools, plug-ins, etc. here.](https://godotsteam.com/resources/external/)
+[Documentation is available here](https://godotsteam.com). You can also check out the Search Help section inside Godot Engine. [To start, try checking out our tutorial on initializing Steam.](https://godotsteam.com/tutorials/initializing/) There are additional tutorials, with more in the works. You can also [check out additional Godot and Steam related videos, text, additional tools, plug-ins, etc. here.](https://godotsteam.com/resources/external/)
 
 Feel free to chat with us about GodotSteam or ask for assistance on the [Stoat server](https://stt.gg/9DxQ3Dcd) or [IRC on Libera Chat](irc://irc.libera.chat/#godotsteam).
 
 
-Donate
----
-Pull-requests are the best way to help the project out but you can also donate through [Github Sponsors](https://github.com/sponsors/Gramps) or [LiberaPay](https://liberapay.com/godotsteam/donate)! [You can read more about donor perks here.](https://godotsteam.com/contribute/donations/)  [You can also view all our awesome donors here.](https://godotsteam.com/contribute/donors/)
-
-
 Current Build
 ---
-You can [download pre-compiled versions of this repo here](https://codeberg.org/godotsteam/godotsteam/releases).
+You can [download pre-compiled versions of this repo here](https://codeberg.org/godotsteam/godotsteam-sponsors/releases).
 
-**Version 4.17.1 Changes**
+**Version 4.19.1 Changes**
 
-- Changed: SCsub and config.py for ARM64 and Android
-- Fixed: potential crash in disconnect_peer; thanks to ***bearlikelion***
+- Changed: commented out possible issue with removing dock node
+- Fixed: in-editor docs error, thanks to ***evanwang0***
 
 [You can read more change-logs here](https://godotsteam.com/changelog/gdextension/).
 
@@ -58,8 +43,9 @@ GodotSteam Version | Broken Compatibility
 4.11 | setLeaderboardDetailsMax removed
 4.13 | getItemDefinitionProperty return a dictionary, html_needs_paint key 'bgra' changed to 'rbga'
 4.14 | Removed first argument for stat request in steamInit and steamInitEx, steamInit returns intended bool value
-4.16 | Variety of small break points, refer to [4.16 changelog for details](https://godotsteam.com/changelog/godot4/)
+4.16 | Variety of small break points, refer to [4.16 changelog for details](https://godotsteam.com/changelog/godot4/#version-416)
 4.17 | Windows projects using Steam SDK 1.63 are meant to work with Proton 11 or Experimental on Linux / Steam Deck.
+4.19 | Lots of changes to Voice functions, refer to [4.19 changelog for details](https://godotsteam.com/changelog/godot4/#version-419)
 
 
 Known Issues
@@ -72,14 +58,19 @@ Quick How-To
 ---
 For complete instructions on how to build the GDExtension version of GodotSteam, [please refer to our documentation's 'How-To GDExtension' section.](https://godotsteam.com/howto/gdextension/) It will have the most up-to-date information.
 
-Alternatively, you can just [download the pre-compiled versions in our Releases section](https://codeberg.org/godotsteam/godotsteam/releases) or [from the Godot Asset Library](https://godotengine.org/asset-library/asset/2445) and skip compiling it yourself!
+Alternatively, you can just [download the pre-compiled versions in our Releases section](https://codeberg.org/godotsteam/godotsteam-sponsors/releases) or [from the Godot Asset Library](https://godotengine.org/asset-library/asset/2445) and skip compiling it yourself!
 
 
-Usage
+Need Help?
 ---
-Do not use the GDExtension version of GodotSteam with any of the module versions whether it be our pre-compiled versions or ones you compile.  They are not compatible with each other.
+As a sponsor, you can reach out to me [directly by e-mail at gp@godotsteam.com](mailto:gp@godotsteam.com).
 
-When exporting with the GDExtension version, please use the normal Godot Engine templates instead of our GodotSteam templates or you will have a lot of issues.
+
+Thank You!
+---
+Thank you so much for supporting this project!
+
+I am always looking for some additional perks to provide to sponsors to show appreciation for you all supporting the project.  If you have any ideas, please feel free to hit me up at either of the places above!
 
 
 License
