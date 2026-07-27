@@ -2,10 +2,31 @@
 
 [ext_resource type="Script" uid="uid://csjccrhj5wnx7" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_3d.gd" id="1_pvk8e"]
 [ext_resource type="Script" uid="uid://cy3jex7t81k02" path="res://Scripts/player_controller.gd" id="1_t5o4e"]
+[ext_resource type="Shader" uid="uid://bj2few6lgphk6" path="res://Scripts/Shaders/dither_and_gradient_compression.gdshader" id="2_7j8e6"]
 [ext_resource type="Script" uid="uid://8umksf8e80fw" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="2_t5o4e"]
+[ext_resource type="Texture2D" uid="uid://cfhibibv515g0" path="res://Assets/Gradients/Classic Red Palette.png" id="3_7j8e6"]
 [ext_resource type="Script" uid="uid://bd046eokvcnu2" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="4_f4b76"]
+[ext_resource type="Shader" uid="uid://dc4n1tkqmy250" path="res://Scripts/Shaders/moebius.gdshader" id="5_lbck2"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_no5jg"]
+shader = ExtResource("2_7j8e6")
+shader_parameter/shader_enabled = true
+shader_parameter/palette = ExtResource("3_7j8e6")
+shader_parameter/dithering = false
+shader_parameter/dithering_size = 1
+shader_parameter/resolution_scale = 1
+shader_parameter/quantization_level = 16
+
+[sub_resource type="BoxMesh" id="BoxMesh_hj8yn"]
+size = Vector3(10, 10, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7j8e6"]
+render_priority = 0
+shader = ExtResource("5_lbck2")
+shader_parameter/sensitivity = 2.999999932944
+shader_parameter/outline_thickness = 0.0999999977648
+shader_parameter/step_threshold = 0.5999999865888
+shader_parameter/outline_color = Color(0, 0, 0, 1)
 
 [sub_resource type="Resource" id="Resource_rlble"]
 script = ExtResource("2_t5o4e")
@@ -70,6 +91,11 @@ process_priority = 300
 process_physics_priority = 300
 script = ExtResource("4_f4b76")
 metadata/_custom_type_script = "uid://bd046eokvcnu2"
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Camera" unique_id=348879990]
+transform = Transform3D(1000, 0, 0, 0, 384.88, 0, 0, 0, 111.85, 0, 0, 0)
+mesh = SubResource("BoxMesh_hj8yn")
+surface_material_override/0 = SubResource("ShaderMaterial_7j8e6")
 
 [node name="Cam Origin" type="Node3D" parent="." unique_id=1716167983]
 transform = Transform3D(1, 0, 0, 0, 0.99939084, 0.034899496, 0, -0.034899496, 0.99939084, -1.5, -0.5, 0)

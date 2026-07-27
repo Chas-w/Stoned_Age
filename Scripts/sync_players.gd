@@ -1,7 +1,7 @@
 extends Node3D
 #referenced this vid: https://youtu.be/rQ9mDxvuoeA?si=ReEoulqFMng0Djh8
 const PLAYER_CONTROLLER = preload("uid://cs5uw5ng78niv")
-
+@export var spawn_spot  : Marker3D
 var players: Array[Node3D]
 
 @onready var input_join_code = $"MainMenu/Menu/Room Code"
@@ -24,7 +24,7 @@ func spawn_player(peer_id: int) -> void:
 	initialize_player(new_player)
 
 func initialize_player(player: Node3D) -> void:
-	player.position = $".".position
+	player.position = spawn_spot.position
 	for other in players:
 		player.add_collision_exception_with(other)
 	players.append(player)

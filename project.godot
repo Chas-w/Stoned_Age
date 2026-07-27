@@ -38,6 +38,11 @@ folder_colors={
 "res://Scripts/": "teal"
 }
 
+[global_group]
+
+Player=""
+"Player Controller"=""
+
 [input]
 
 left={

@@ -26,8 +26,9 @@ noise = SubResource("FastNoiseLite_ida6p")
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7hvxj"]
 albedo_texture = SubResource("NoiseTexture2D_snd3g")
 
-[node name="Test World" type="Node3D" unique_id=1794183482]
+[node name="Test World" type="Node3D" unique_id=1794183482 node_paths=PackedStringArray("spawn_spot")]
 script = ExtResource("1_7hvxj")
+spawn_spot = NodePath("Spawn_Spot")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=392824482]
 environment = SubResource("Environment_3u288")
