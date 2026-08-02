@@ -26,7 +26,7 @@ func spawn_player(peer_id: int) -> void:
 func initialize_player(player: Node3D) -> void:
 	player.position = spawn_spot.position
 	for other in players:
-		player.add_collision_exception_with(other)
+		player.player_body.add_collision_exception_with(other)
 	players.append(player)
 
 func _on_host_pressed() -> void:
