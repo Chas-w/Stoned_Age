@@ -4,7 +4,7 @@ const PLAYER_CONTROLLER = preload("uid://cs5uw5ng78niv")
 @export var spawn_spot  : Marker3D
 var players: Array[Node3D]
 
-@onready var input_join_code = $"MainMenu/Menu/Room Code"
+@onready var input_join_code = $"Menu UI/Menu/Room Code"
 @onready var menu_ui = $"Menu UI"
 
 func _ready() -> void:
