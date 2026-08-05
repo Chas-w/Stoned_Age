@@ -1,0 +1,97 @@
+[gd_scene format=3 uid="uid://biwh4nch7tw0g"]
+
+[ext_resource type="Script" uid="uid://47y23r8uek7m" path="res://Scripts/game_manager.gd" id="1_65wml"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_pvut4"]
+sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+
+[sub_resource type="Sky" id="Sky_o05ts"]
+sky_material = SubResource("ProceduralSkyMaterial_pvut4")
+
+[sub_resource type="Environment" id="Environment_65wml"]
+background_mode = 2
+sky = SubResource("Sky_o05ts")
+glow_enabled = true
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_lrwwn"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_mh7mo"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_fvyv6"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_snd3g"]
+noise = SubResource("FastNoiseLite_fvyv6")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_e35u1"]
+albedo_texture = SubResource("NoiseTexture2D_snd3g")
+
+[node name="World" type="Node3D" unique_id=1340814464]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1718343630]
+environment = SubResource("Environment_65wml")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=95980601]
+transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
+shadow_enabled = true
+
+[node name="Ground" type="StaticBody3D" parent="." unique_id=91430802]
+transform = Transform3D(200, 0, 0, 0, 1, 0, 0, 0, 200, 0, -10, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ground" unique_id=710311084]
+shape = SubResource("BoxShape3D_lrwwn")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Ground/CollisionShape3D" unique_id=19113548]
+mesh = SubResource("BoxMesh_mh7mo")
+surface_material_override/0 = SubResource("StandardMaterial3D_e35u1")
+
+[node name="Multiplayer HUD" type="Control" parent="." unique_id=963615889]
+unique_name_in_owner = true
+layout_mode = 3
+anchor_left = -0.095000006
+anchor_bottom = 0.09
+offset_left = 127.44001
+offset_top = 34.0
+offset_right = 128.0
+offset_bottom = 40.679996
+pivot_offset_ratio = Vector2(0.5, 0.5)
+
+[node name="Panel" type="Panel" parent="Multiplayer HUD" unique_id=1570087591]
+custom_maximum_size = Vector2(0, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 55.0
+offset_top = 32.5
+offset_right = -55.0
+offset_bottom = -32.5
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset_ratio = Vector2(0.5, 0.5)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Multiplayer HUD/Panel" unique_id=616718061]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = -0.44300002
+anchor_right = 1.0
+anchor_bottom = 1.4430001
+offset_top = 15.505001
+offset_bottom = -15.505001
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset_ratio = Vector2(0.5, 0.5)
+
+[node name="Host" type="Button" parent="Multiplayer HUD/Panel/VBoxContainer" unique_id=2031400001]
+layout_mode = 2
+text = "Host"
+
+[node name="Join" type="Button" parent="Multiplayer HUD/Panel/VBoxContainer" unique_id=230148701]
+layout_mode = 2
+text = "Join"
+
+[node name="Game Manager" type="Node" parent="." unique_id=1116847051]
+script = ExtResource("1_65wml")
+
+[connection signal="pressed" from="Multiplayer HUD/Panel/VBoxContainer/Host" to="Game Manager" method="attempt_host"]
+[connection signal="pressed" from="Multiplayer HUD/Panel/VBoxContainer/Join" to="Game Manager" method="attempt_join"]

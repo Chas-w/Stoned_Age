@@ -11,17 +11,18 @@ config_version=5
 [application]
 
 config/name="Stoned Age"
-run/main_scene="uid://fveybfvgsrrw"
+run/main_scene="uid://biwh4nch7tw0g"
 config/features=PackedStringArray("4.7", "Forward Plus")
 config/icon="res://icon.svg"
 
 [autoload]
 
-Networking="*uid://c66v3pwdlbo2i"
 PhantomCameraManager="*uid://duq6jhf6unyis"
+MultiplayerManager="*uid://oe8prn7qtp3x"
 
 [display]
 
+window/size/always_on_top=true
 window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
 
@@ -33,7 +34,6 @@ enabled=PackedStringArray("res://addons/phantom_camera/plugin.cfg")
 
 folder_colors={
 "res://Assets/": "red",
-"res://DISCARD/": "gray",
 "res://Scripts/": "teal"
 }
 
