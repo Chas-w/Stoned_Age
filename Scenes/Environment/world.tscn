@@ -93,5 +93,12 @@ text = "Join"
 [node name="Game Manager" type="Node" parent="." unique_id=1116847051]
 script = ExtResource("1_65wml")
 
+[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="." unique_id=1776036296]
+_spawnable_scenes = PackedStringArray("uid://cs5uw5ng78niv")
+spawn_path = NodePath("../Players")
+spawn_limit = 4
+
+[node name="Players" type="Node3D" parent="." unique_id=3530728]
+
 [connection signal="pressed" from="Multiplayer HUD/Panel/VBoxContainer/Host" to="Game Manager" method="attempt_host"]
 [connection signal="pressed" from="Multiplayer HUD/Panel/VBoxContainer/Join" to="Game Manager" method="attempt_join"]

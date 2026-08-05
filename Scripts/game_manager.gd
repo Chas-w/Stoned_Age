@@ -12,7 +12,7 @@ func _process(delta):
 	pass
 
 func attempt_host():
-	print("host pressed")
+	print("Host pressed")
 	MultiplayerManager._become_host()
 	multiplayer_hud.hide()
 

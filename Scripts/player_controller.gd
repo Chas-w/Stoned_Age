@@ -31,7 +31,6 @@ const WALK_SPEED = 5.0
 const SPRINT_SPEED = 8.0
 const JUMP_VELOCITY = 8
 var sens = 0.0004
-var mount_sens = .0003
 var default_sens =  0.0004
 #fov variables
 const DEFAULT_FOV = 75.0
@@ -43,9 +42,6 @@ const SPRINT_FOV = 100
 
 @export_category("Camera")
 @export var cam : Camera3D
-@export var default_cam : PhantomCamera3D
-@export var zoom_cam : PhantomCamera3D
-@export var mount_cam : PhantomCamera3D
 var controller_vector 
 var default_H_offset  = 1.5
 var default_FOV = 84.1
@@ -72,6 +68,10 @@ enum Move_State{Idle,Moving,Climbing, Null}
 enum Interact_State{Talk, Inspect, In_Menu, In_Minigame, Null}
 @export var interact_state : Interact_State = Interact_State.Null
 
+
+@export var player_id := 1:
+	set(id):
+		player_id = id
 
 
 func _enter_tree():
