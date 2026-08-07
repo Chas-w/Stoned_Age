@@ -1,3 +1,4 @@
+@icon("uid://b4e1f62upntch")
 extends Node3D
 @export_category("Movement")
 @export var player_body : RigidBody3D
@@ -55,27 +56,34 @@ var default_far = 4000
 @export var cam_follow_weight : float
 ##origin point of the default camera
 @export var cam_origin : Node3D
-##origin point of the aiming camera
-@export var zoomed_origin : Node3D
 ##how long it takes the lower body to match rotation
 @export var rotation_buffer : float
 var zoomed : bool
-
 
 @export_category("States")
 enum Move_State{Idle,Moving,Climbing, Null}
 @export var move_state : Move_State = Move_State.Idle
 enum Interact_State{Talk, Inspect, In_Menu, In_Minigame, Null}
 @export var interact_state : Interact_State = Interact_State.Null
-
-
-@export var player_id := 1:
-	set(id):
-		player_id = id
-
+@export var player_id : int
 
 func _enter_tree():
 	_load_in()
+
+func _ready():
+	_setup_local_player()
+
+func _setup_local_player():
+	player_id = get_multiplayer_authority()
+	print("player id " + str(player_id))
+	print("multiplayer id " + str(multiplayer.get_unique_id()))
+	if(multiplayer.get_unique_id() == player_id):
+		%Camera.make_current()
+		%SubViewportContainer.visible = true
+		%"Default Cam".visible = true
+		print(cam)
+	else:
+		%Camera.visible = false
 
 func _load_in():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)  
@@ -125,7 +133,6 @@ func _physics_process(delta):
 		Move_State.Climbing:
 			_handle_climbing()
 			pass
-	
 
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:
@@ -219,7 +226,6 @@ func _handle_climbing():
 		#jump AWAY from wall when jump is released
 		_set_move_state(Move_State.Idle)
 
-
 func _handle_zoom(delta):
 	if(Input.is_action_pressed("zoom")):
 		cam.fov = lerpf(cam.fov, ZOOM_FOV, delta * 2)
@@ -231,8 +237,6 @@ func _handle_zoom(delta):
 			zoomed = false
 
 func _handle_follow_cam(delta): #needs some tweaking later, maybe figure out some ease?
-	##zoom cam
-	zoomed_origin.global_rotation = cam_origin.global_rotation
 	##x
 	if (absf(player_body.global_position.x - cam_origin.global_position.x) > follow_buffer.x):
 		cam_origin.global_position.x = lerpf(cam_origin.global_position.x, player_body.global_position.x, cam_follow_weight/2 * delta)
@@ -256,8 +260,6 @@ func _set_move_state(next_move_state:int):
 	match(next_move_state):
 		Move_State.Moving:
 			pass
-
-
 
 func _set_interact_state(next_interact_state:int):
 	var prev_interact_state := interact_state

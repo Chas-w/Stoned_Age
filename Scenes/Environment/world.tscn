@@ -26,6 +26,18 @@ noise = SubResource("FastNoiseLite_fvyv6")
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_e35u1"]
 albedo_texture = SubResource("NoiseTexture2D_snd3g")
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_oqlhh"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_dyyqa"]
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_65wml"]
+properties/0/path = NodePath("RigidBody3D:position")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+properties/1/path = NodePath("RigidBody3D:rotation")
+properties/1/spawn = true
+properties/1/replication_mode = 1
+
 [node name="World" type="Node3D" unique_id=1340814464]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1718343630]
@@ -99,6 +111,17 @@ spawn_path = NodePath("../Players")
 spawn_limit = 4
 
 [node name="Players" type="Node3D" parent="." unique_id=3530728]
+
+[node name="RigidBody3D" type="RigidBody3D" parent="." unique_id=1063186201]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D" unique_id=1923808681]
+shape = SubResource("BoxShape3D_oqlhh")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="RigidBody3D" unique_id=418494794]
+mesh = SubResource("BoxMesh_dyyqa")
+
+[node name="Sync Objects" type="MultiplayerSynchronizer" parent="." unique_id=102831157]
+replication_config = SubResource("SceneReplicationConfig_65wml")
 
 [connection signal="pressed" from="Multiplayer HUD/Panel/VBoxContainer/Host" to="Game Manager" method="attempt_host"]
 [connection signal="pressed" from="Multiplayer HUD/Panel/VBoxContainer/Join" to="Game Manager" method="attempt_join"]
