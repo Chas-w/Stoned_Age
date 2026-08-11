@@ -1,5 +1,6 @@
 @icon("uid://b4e1f62upntch")
 extends Node3D
+
 @export_category("Movement")
 @export var player_body : RigidBody3D
 @export var lower_body_visual : MeshInstance3D

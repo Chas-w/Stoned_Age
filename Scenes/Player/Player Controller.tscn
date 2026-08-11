@@ -44,6 +44,15 @@ properties/0/replication_mode = 1
 properties/1/path = NodePath("Player Body:position")
 properties/1/spawn = true
 properties/1/replication_mode = 1
+properties/2/path = NodePath("Player Body:rotation")
+properties/2/spawn = true
+properties/2/replication_mode = 1
+properties/3/path = NodePath(".:rotation")
+properties/3/spawn = true
+properties/3/replication_mode = 1
+properties/4/path = NodePath("Body:rotation")
+properties/4/spawn = true
+properties/4/replication_mode = 1
 
 [node name="Player Controller" type="Node3D" unique_id=1667299940 node_paths=PackedStringArray("player_body", "lower_body_visual", "ground_cast", "climb_checker", "body_collision", "cam", "center_point", "cam_origin") groups=["Player Controller"]]
 script = ExtResource("1_t5o4e")
