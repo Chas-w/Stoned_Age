@@ -60,36 +60,30 @@ surface_material_override/0 = SubResource("StandardMaterial3D_e35u1")
 [node name="Multiplayer HUD" type="Control" parent="." unique_id=963615889]
 unique_name_in_owner = true
 layout_mode = 3
-anchor_left = -0.095000006
-anchor_bottom = 0.09
-offset_left = 127.44001
-offset_top = 34.0
-offset_right = 128.0
-offset_bottom = 40.679996
+anchor_left = 0.044000003
+anchor_top = 0.052
+anchor_right = 0.22100002
+anchor_bottom = 0.208
+offset_left = 0.31199646
+offset_top = 0.30400085
+offset_right = -0.5920105
+offset_bottom = 0.21600342
 pivot_offset_ratio = Vector2(0.5, 0.5)
 
-[node name="Panel" type="Panel" parent="Multiplayer HUD" unique_id=1570087591]
-custom_maximum_size = Vector2(0, 0)
+[node name="Panel" type="Panel" parent="Multiplayer HUD" unique_id=1668439807]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 55.0
-offset_top = 32.5
-offset_right = -55.0
-offset_bottom = -32.5
 grow_horizontal = 2
 grow_vertical = 2
-pivot_offset_ratio = Vector2(0.5, 0.5)
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Multiplayer HUD/Panel" unique_id=616718061]
 layout_mode = 1
-anchors_preset = -1
-anchor_top = -0.44300002
+anchors_preset = 15
 anchor_right = 1.0
-anchor_bottom = 1.4430001
-offset_top = 15.505001
-offset_bottom = -15.505001
+anchor_bottom = 1.0
+offset_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 pivot_offset_ratio = Vector2(0.5, 0.5)
@@ -98,9 +92,69 @@ pivot_offset_ratio = Vector2(0.5, 0.5)
 layout_mode = 2
 text = "Host"
 
-[node name="Join" type="Button" parent="Multiplayer HUD/Panel/VBoxContainer" unique_id=230148701]
+[node name="Join As Client" type="Button" parent="Multiplayer HUD/Panel/VBoxContainer" unique_id=230148701]
 layout_mode = 2
-text = "Join"
+text = "Join As Client"
+
+[node name="Use Steam" type="Button" parent="Multiplayer HUD/Panel/VBoxContainer" unique_id=1960188389]
+layout_mode = 2
+text = "USE STEAM
+"
+
+[node name="Steam HUD" type="Control" parent="." unique_id=1187600454]
+unique_name_in_owner = true
+visible = false
+layout_mode = 3
+anchor_left = 0.044000003
+anchor_top = 0.185
+anchor_right = 0.22000001
+anchor_bottom = 0.55
+offset_left = 0.31199646
+offset_top = -85.880005
+offset_right = 0.5599823
+offset_bottom = -86.399994
+
+[node name="Panel" type="Panel" parent="Steam HUD" unique_id=1991459278]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Options" type="VBoxContainer" parent="Steam HUD/Panel" unique_id=1530391673]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -0.5
+offset_top = -0.5
+offset_right = 0.5
+offset_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Host p2p" type="Button" parent="Steam HUD/Panel/Options" unique_id=828169204]
+layout_mode = 2
+text = "Host P2P"
+
+[node name="List Lobbies" type="Button" parent="Steam HUD/Panel/Options" unique_id=454943761]
+layout_mode = 2
+text = "List Lobbies"
+
+[node name="Lobbies" type="ScrollContainer" parent="Steam HUD/Panel" unique_id=818242900]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.469
+anchor_right = 1.005
+anchor_bottom = 1.0
+offset_top = -12.986
+offset_right = -0.49501038
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Available Lobbies" type="VBoxContainer" parent="Steam HUD/Panel/Lobbies" unique_id=856086612]
+layout_mode = 2
 
 [node name="Game Manager" type="Node" parent="." unique_id=1116847051]
 script = ExtResource("1_65wml")
@@ -124,4 +178,6 @@ mesh = SubResource("BoxMesh_dyyqa")
 replication_config = SubResource("SceneReplicationConfig_65wml")
 
 [connection signal="pressed" from="Multiplayer HUD/Panel/VBoxContainer/Host" to="Game Manager" method="attempt_host"]
-[connection signal="pressed" from="Multiplayer HUD/Panel/VBoxContainer/Join" to="Game Manager" method="attempt_join"]
+[connection signal="pressed" from="Multiplayer HUD/Panel/VBoxContainer/Join As Client" to="Game Manager" method="attempt_join_as_client"]
+[connection signal="pressed" from="Multiplayer HUD/Panel/VBoxContainer/Use Steam" to="Game Manager" method="use_steam"]
+[connection signal="pressed" from="Steam HUD/Panel/Options/List Lobbies" to="Game Manager" method="list_steam_lobbies"]

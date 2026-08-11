@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 
 PhantomCameraManager="*uid://duq6jhf6unyis"
 MultiplayerManager="*uid://oe8prn7qtp3x"
+SteamManager="*uid://bup4vc7tm8t6h"
 
 [display]
 
@@ -28,7 +29,7 @@ window/stretch/aspect="expand"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/phantom_camera/plugin.cfg")
+enabled=PackedStringArray("res://addons/godotsteam/plugin.cfg", "res://addons/phantom_camera/plugin.cfg")
 
 [file_customization]
 
@@ -90,10 +91,8 @@ rendering_device/driver.windows="d3d12"
 
 [steam]
 
-initialization/app_id=480
-initialization/initialize_on_startup=true
-initialization/embed_callbacks=false
-multiplayer_peer/max_channels=4
+initialization/app_data/app_id=480
+initialization/processes/initialize_on_startup=true
 
 [steam_server]
 
