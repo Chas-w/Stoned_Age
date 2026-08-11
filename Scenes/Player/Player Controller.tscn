@@ -54,7 +54,7 @@ properties/4/path = NodePath("Body:rotation")
 properties/4/spawn = true
 properties/4/replication_mode = 1
 
-[node name="Player Controller" type="Node3D" unique_id=1667299940 node_paths=PackedStringArray("player_body", "lower_body_visual", "ground_cast", "climb_checker", "body_collision", "cam", "center_point", "cam_origin") groups=["Player Controller"]]
+[node name="Player Controller" type="Node3D" unique_id=1667299940 node_paths=PackedStringArray("player_body", "lower_body_visual", "ground_cast", "climb_checker", "body_collision", "cam", "center_point", "cam_origin", "multiplayer_name") groups=["Player Controller"]]
 script = ExtResource("1_t5o4e")
 player_body = NodePath("Player Body")
 lower_body_visual = NodePath("Body")
@@ -68,6 +68,7 @@ follow_buffer = Vector4(0.1, 1, 5, 0.5)
 cam_follow_weight = 8.0
 cam_origin = NodePath("Cam Origin")
 rotation_buffer = 5.0
+multiplayer_name = NodePath("Player Body/Label3D")
 
 [node name="SubViewportContainer" type="SubViewportContainer" parent="." unique_id=451404646]
 unique_name_in_owner = true
@@ -86,7 +87,7 @@ render_target_update_mode = 0
 
 [node name="Camera" type="Camera3D" parent="SubViewportContainer/SubViewport" unique_id=959619856]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 0.9993908, 0.03489949, 0, -0.03489949, 0.9993908, -1.46, -0.42702514, 2.0897267)
+transform = Transform3D(1, 0, 0, 0, 0.99939084, 0.034899496, 0, -0.034899496, 0.99939084, 0, 0, 2.1326761)
 top_level = true
 h_offset = 1.5
 current = true
@@ -104,7 +105,7 @@ mesh = SubResource("BoxMesh_hj8yn")
 surface_material_override/0 = SubResource("ShaderMaterial_7j8e6")
 
 [node name="Cam Origin" type="Node3D" parent="." unique_id=1716167983]
-transform = Transform3D(1, 0, 0, 0, 0.99939084, 0.034899496, 0, -0.034899496, 0.99939084, -1.5, -0.5, 0)
+transform = Transform3D(1, 0, 0, 0, 0.99939084, 0.034899496, 0, -0.034899496, 0.99939084, 0, 0, 0)
 
 [node name="SpringArm3D" type="SpringArm3D" parent="Cam Origin" unique_id=703369229]
 transform = Transform3D(1, 0, 0, 0, 1.0000001, 0, 0, 0, 1.0000001, 0, 0, 0)
@@ -124,7 +125,6 @@ spring_length = 3.0
 metadata/_custom_type_script = "uid://csjccrhj5wnx7"
 
 [node name="Body" type="MeshInstance3D" parent="." unique_id=1086601029]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.2933636, -0.61135334, 0)
 mesh = SubResource("CapsuleMesh_cwweq")
 
 [node name="Ground Cast" type="RayCast3D" parent="Body" unique_id=217260227]
@@ -136,7 +136,6 @@ transform = Transform3D(0.99999994, 0, 0, 0, -4.3711385e-08, -0.99999994, 0, 1, 
 collision_mask = 4
 
 [node name="Player Body" type="RigidBody3D" parent="." unique_id=919998661 groups=["Player"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.2933636, -0.61135334, 0)
 mass = 90.0
 gravity_scale = 2.0
 can_sleep = false
@@ -151,6 +150,11 @@ mesh = SubResource("CapsuleMesh_cwweq")
 
 [node name="Center Point" type="Marker3D" parent="Player Body" unique_id=1897500884]
 transform = Transform3D(1, 0, 0, 0, 1.0000002, 0, 0, 0, 1.0000002, 0, 0.9685745, 0)
+
+[node name="Label3D" type="Label3D" parent="Player Body" unique_id=620924339]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2286097, 0)
+text = "NAME"
+font_size = 42
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="." unique_id=23027294]
 replication_config = SubResource("SceneReplicationConfig_qkgtm")

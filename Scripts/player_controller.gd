@@ -66,7 +66,10 @@ enum Move_State{Idle,Moving,Climbing, Null}
 @export var move_state : Move_State = Move_State.Idle
 enum Interact_State{Talk, Inspect, In_Menu, In_Minigame, Null}
 @export var interact_state : Interact_State = Interact_State.Null
+@export_category("Multiplayer")
 @export var player_id : int
+@export var multiplayer_name : Label3D
+
 
 func _enter_tree():
 	_load_in()
