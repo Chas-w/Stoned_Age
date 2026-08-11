@@ -68,7 +68,6 @@ surface_material_override/0 = SubResource("StandardMaterial3D_e35u1")
 
 [node name="Multiplayer HUD" type="Control" parent="." unique_id=963615889]
 unique_name_in_owner = true
-visible = false
 z_index = 11
 layout_mode = 3
 anchor_left = 0.044000003
@@ -114,6 +113,7 @@ text = "USE STEAM
 
 [node name="Steam HUD" type="Control" parent="." unique_id=1187600454]
 unique_name_in_owner = true
+visible = false
 z_index = 11
 layout_mode = 3
 anchor_left = 0.044000003
