@@ -94,6 +94,7 @@ func _load_in():
 	set_multiplayer_authority(name.to_int())
 
 func _process(delta):
+	
 	#ground check
 	grounded = ground_cast.is_colliding()
 	

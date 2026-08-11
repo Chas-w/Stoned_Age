@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://biwh4nch7tw0g"]
 
 [ext_resource type="Script" uid="uid://47y23r8uek7m" path="res://Scripts/game_manager.gd" id="1_65wml"]
+[ext_resource type="Script" uid="uid://dnqa7pnc1kwyb" path="res://Scripts/Networks/network_manager.gd" id="2_lrwwn"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_pvut4"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -40,6 +41,14 @@ properties/1/replication_mode = 1
 
 [node name="World" type="Node3D" unique_id=1340814464]
 
+[node name="Game Manager" type="Node" parent="." unique_id=1116847051]
+script = ExtResource("1_65wml")
+
+[node name="Network Manager" type="Node" parent="." unique_id=1340087900 node_paths=PackedStringArray("_players_spawn_node")]
+unique_name_in_owner = true
+script = ExtResource("2_lrwwn")
+_players_spawn_node = NodePath("../Players")
+
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1718343630]
 environment = SubResource("Environment_65wml")
 
@@ -59,6 +68,7 @@ surface_material_override/0 = SubResource("StandardMaterial3D_e35u1")
 
 [node name="Multiplayer HUD" type="Control" parent="." unique_id=963615889]
 unique_name_in_owner = true
+z_index = 11
 layout_mode = 3
 anchor_left = 0.044000003
 anchor_top = 0.052
@@ -104,6 +114,7 @@ text = "USE STEAM
 [node name="Steam HUD" type="Control" parent="." unique_id=1187600454]
 unique_name_in_owner = true
 visible = false
+z_index = 11
 layout_mode = 3
 anchor_left = 0.044000003
 anchor_top = 0.185
@@ -154,10 +165,8 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Available Lobbies" type="VBoxContainer" parent="Steam HUD/Panel/Lobbies" unique_id=856086612]
+unique_name_in_owner = true
 layout_mode = 2
-
-[node name="Game Manager" type="Node" parent="." unique_id=1116847051]
-script = ExtResource("1_65wml")
 
 [node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="." unique_id=1776036296]
 _spawnable_scenes = PackedStringArray("uid://cs5uw5ng78niv")
@@ -180,4 +189,5 @@ replication_config = SubResource("SceneReplicationConfig_65wml")
 [connection signal="pressed" from="Multiplayer HUD/Panel/VBoxContainer/Host" to="Game Manager" method="attempt_host"]
 [connection signal="pressed" from="Multiplayer HUD/Panel/VBoxContainer/Join As Client" to="Game Manager" method="attempt_join_as_client"]
 [connection signal="pressed" from="Multiplayer HUD/Panel/VBoxContainer/Use Steam" to="Game Manager" method="use_steam"]
+[connection signal="pressed" from="Steam HUD/Panel/Options/Host p2p" to="Game Manager" method="attempt_host"]
 [connection signal="pressed" from="Steam HUD/Panel/Options/List Lobbies" to="Game Manager" method="list_steam_lobbies"]
