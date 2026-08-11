@@ -27,7 +27,6 @@ func _set_active_network(active_network_scene):
 	active_network._players_spawn_node = _players_spawn_node
 	add_child(active_network)
 
-
 func become_host():
 	_build_network()
 	active_network.become_host()

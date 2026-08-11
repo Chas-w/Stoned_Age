@@ -28,23 +28,29 @@ func list_steam_lobbies():
 	print("LISTING LOBBIES...")
 	%"Network Manager".list_lobbies()
 	
-
-func join_lobby(lobby_id : int = 0):
+func join_lobby(lobby_id := 0):
 	print("Joining Lobby...")
-	%"Network Manager".join_as_client()
+	%"Network Manager".join_as_client(lobby_id)
 	multiplayer_hud.hide()
 	%"Steam HUD".hide()
-
+	
+func join_from_button(lobby_id : int):
+	print(lobby_id)
+	print("Joining Lobby...")
+	%"Network Manager".join_as_client(lobby_id)
+	multiplayer_hud.hide()
+	%"Steam HUD".hide()
 func _on_lobby_match_list(lobbies : Array):
 	for lobby_child in %"Available Lobbies".get_children():
 		lobby_child.queue_free()
 		
 	for lobby in lobbies:
 		var lobby_name:String = Steam.getLobbyData(lobby,"name")
-		if(lobby_name != "" && lobby_name == "BAD"):
-			var lobby_button : Button = Button.new()
+		if(lobby_name != ""):
+			var lobby_button = preload("res://Scenes/Multiplayer/lobby_option.tscn").instantiate()
 			lobby_button.set_text(lobby_name)
 			lobby_button.set_name("lobby_%s" % lobby)
 			lobby_button.alignment = HORIZONTAL_ALIGNMENT_LEFT
-			lobby_button.connect("pressed",Callable(self, "join_lobby").bind(lobby))
+			lobby_button.connect("pressed", Callable(self, "join_from_button").bind(lobby_button.lobby_option_id))
+			lobby_button.lobby_option_id = lobby
 			%"Available Lobbies".add_child(lobby_button)
