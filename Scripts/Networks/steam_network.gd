@@ -4,7 +4,6 @@ extends Node
 var player_scene = preload("res://Scenes/Player/Player Controller.tscn")
 var multiplayer_peer : SteamMultiplayerPeer = SteamMultiplayerPeer.new()
 var _players_spawn_node 
-
 var _hosted_lobby_id = 0
 
 func  _ready():
