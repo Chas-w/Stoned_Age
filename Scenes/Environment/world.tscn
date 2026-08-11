@@ -99,10 +99,12 @@ grow_vertical = 2
 pivot_offset_ratio = Vector2(0.5, 0.5)
 
 [node name="Host" type="Button" parent="Multiplayer HUD/Panel/VBoxContainer" unique_id=2031400001]
+visible = false
 layout_mode = 2
 text = "Host"
 
 [node name="Join As Client" type="Button" parent="Multiplayer HUD/Panel/VBoxContainer" unique_id=230148701]
+visible = false
 layout_mode = 2
 text = "Join As Client"
 

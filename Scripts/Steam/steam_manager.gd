@@ -1,7 +1,7 @@
 extends Node
 #ref https://youtu.be/MoRl9kQb6L0?si=MLgdQpoNMABUXGf2
 var is_owned : bool = false
-var steam_app_id: int = 480 #test ID replace later
+var steam_app_id: int = 4489380 #test ID replace later
 var steam_id : int = 0
 var steam_username : String = ""
 
