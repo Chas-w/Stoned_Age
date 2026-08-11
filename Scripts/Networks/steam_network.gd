@@ -33,7 +33,6 @@ func _on_lobby_created(connect_status: int, lobby_id):
 		multiplayer.multiplayer_peer = multiplayer_peer
 		
 		Steam.setLobbyJoinable(_hosted_lobby_id, true)
-		
 		Steam.setLobbyData(_hosted_lobby_id, "name", LOBBY_NAME)
 
 func _on_lobby_joined(lobby_id: int, _permissions: int, _locked: bool, _response: int) -> void:
@@ -58,6 +57,4 @@ func _del_player(id : int):
 
 func list_lobbies():
 	Steam.addRequestLobbyListDistanceFilter(Steam.LOBBY_DISTANCE_FILTER_WORLDWIDE)
-
-	#Steam.addRequestLobbyListStringFilter("name", "BAD", Steam.LOBBY_COMPARISON_EQUAL)
 	Steam.requestLobbyList()
