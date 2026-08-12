@@ -22,7 +22,6 @@ func use_steam():
 	Steam.lobby_match_list.connect(_on_lobby_match_list)
 	SteamManager.init_steam()
 	%"Network Manager".active_network_type = %"Network Manager".NETWORK_TYPE.STEAM
-
 	
 func list_steam_lobbies():
 	print("LISTING LOBBIES...")
@@ -40,6 +39,7 @@ func join_from_button(lobby_id : int):
 	%"Network Manager".join_as_client(lobby_id)
 	multiplayer_hud.hide()
 	%"Steam HUD".hide()
+
 func _on_lobby_match_list(lobbies : Array):
 	for lobby_child in %"Available Lobbies".get_children():
 		lobby_child.queue_free()
