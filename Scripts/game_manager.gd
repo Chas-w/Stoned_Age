@@ -51,6 +51,6 @@ func _on_lobby_match_list(lobbies : Array):
 			lobby_button.set_text(lobby_name)
 			lobby_button.set_name("lobby_%s" % lobby)
 			lobby_button.alignment = HORIZONTAL_ALIGNMENT_LEFT
-			lobby_button.connect("pressed", Callable(self, "join_from_button").bind(lobby_button.lobby_option_id))
 			lobby_button.lobby_option_id = lobby
+			lobby_button.connect("pressed", Callable(self, "join_from_button").bind(lobby_button.lobby_option_id))
 			%"Available Lobbies".add_child(lobby_button)
