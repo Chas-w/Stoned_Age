@@ -1,7 +1,7 @@
 extends Node
 
 
-var player_scene = preload("res://Scenes/Player/Player Controller.tscn")
+var player_scene = preload("res://Scenes/Player/player.tscn")
 var multiplayer_peer : SteamMultiplayerPeer = SteamMultiplayerPeer.new()
 var _players_spawn_node 
 var _hosted_lobby_id = 0
@@ -47,7 +47,7 @@ func _add_player_to_game(id : int):
 	var player_to_add = player_scene.instantiate()
 	player_to_add.player_id = id
 	player_to_add.name = str(id)
-	player_to_add.multiplayer_name.text = Steam.getPersonaName()
+	#player_to_add.multiplayer_name.text = Steam.getPersonaName()
 
 	_players_spawn_node.add_child(player_to_add,true)
 

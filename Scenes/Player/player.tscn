@@ -1,0 +1,128 @@
+[gd_scene format=3 uid="uid://ctba5uvryw84m"]
+
+[ext_resource type="Script" uid="uid://cdk1l1xatg4gk" path="res://Scripts/Player/player.gd" id="1_mtuoh"]
+[ext_resource type="Shader" uid="uid://bj2few6lgphk6" path="res://Scripts/Shaders/dither_and_gradient_compression.gdshader" id="2_0u5uq"]
+[ext_resource type="Script" uid="uid://bd046eokvcnu2" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="2_htcer"]
+[ext_resource type="Script" uid="uid://csjccrhj5wnx7" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_3d.gd" id="3_dd0ac"]
+[ext_resource type="Texture2D" uid="uid://cfhibibv515g0" path="res://Assets/Gradients/Classic Red Palette.png" id="3_jlvik"]
+[ext_resource type="Script" uid="uid://8umksf8e80fw" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="4_0u5uq"]
+[ext_resource type="Shader" uid="uid://dc4n1tkqmy250" path="res://Scripts/Shaders/moebius.gdshader" id="4_gk6dx"]
+
+[sub_resource type="Resource" id="Resource_jlvik"]
+script = ExtResource("4_0u5uq")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_jhyir"]
+shader = ExtResource("2_0u5uq")
+shader_parameter/shader_enabled = true
+shader_parameter/palette = ExtResource("3_jlvik")
+shader_parameter/dithering = false
+shader_parameter/dithering_size = 1
+shader_parameter/resolution_scale = 1
+shader_parameter/quantization_level = 16
+
+[sub_resource type="BoxMesh" id="BoxMesh_74mp2"]
+size = Vector3(10, 10, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_oikmp"]
+render_priority = 0
+shader = ExtResource("4_gk6dx")
+shader_parameter/sensitivity = 2.999999932944
+shader_parameter/outline_thickness = 0.0999999977648
+shader_parameter/step_threshold = 0.5999999865888
+shader_parameter/outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_xc2g5"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_wydro"]
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_0u5uq"]
+properties/0/path = NodePath(".:rotation")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+properties/1/path = NodePath(".:position")
+properties/1/spawn = true
+properties/1/replication_mode = 1
+properties/2/path = NodePath("Body:rotation")
+properties/2/spawn = true
+properties/2/replication_mode = 1
+properties/3/path = NodePath("Nametag:text")
+properties/3/spawn = true
+properties/3/replication_mode = 1
+
+[node name="Player" type="RigidBody3D" unique_id=1534641321 node_paths=PackedStringArray("ground_cast", "multiplayer_name", "body_mesh") groups=["Player"]]
+axis_lock_angular_x = true
+axis_lock_angular_y = true
+axis_lock_angular_z = true
+script = ExtResource("1_mtuoh")
+ground_cast = NodePath("Body/Ground Cast")
+use_fov_change = true
+use_headbob = true
+bob_freq = 2.2
+bob_amp = 0.04
+multiplayer_name = NodePath("Nametag")
+body_mesh = NodePath("Body")
+
+[node name="Nametag" type="Label3D" parent="." unique_id=1994693494]
+unique_name_in_owner = true
+transform = Transform3D(-1, 0, -8.940697e-08, 0, 1, 0, 8.940697e-08, 0, -1, 0, 2.3475807, 0)
+text = "NAME"
+font_size = 42
+
+[node name="Head" type="Node3D" parent="." unique_id=1273961367]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.67939, 0)
+
+[node name="PhantomCamera3D" type="Node3D" parent="Head" unique_id=1777328492]
+unique_name_in_owner = true
+script = ExtResource("3_dd0ac")
+tween_resource = SubResource("Resource_jlvik")
+metadata/_custom_type_script = "uid://csjccrhj5wnx7"
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="." unique_id=813920420]
+unique_name_in_owner = true
+visible = false
+material = SubResource("ShaderMaterial_jhyir")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer" unique_id=720155550]
+handle_input_locally = false
+size = Vector2i(1152, 648)
+render_target_update_mode = 0
+
+[node name="Camera3D" type="Camera3D" parent="SubViewportContainer/SubViewport" unique_id=2146566821]
+unique_name_in_owner = true
+physics_interpolation_mode = 1
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.67939, 0)
+top_level = true
+cull_mask = 524287
+current = true
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Camera3D" unique_id=1819258933]
+transform = Transform3D(1000, 0, 0, 0, 384.88, 0, 0, 0, 111.85, 0, 0, 0)
+mesh = SubResource("BoxMesh_74mp2")
+surface_material_override/0 = SubResource("ShaderMaterial_oikmp")
+
+[node name="PhantomCameraHost" type="Node" parent="SubViewportContainer/SubViewport/Camera3D" unique_id=741297041]
+process_priority = 300
+process_physics_priority = 300
+script = ExtResource("2_htcer")
+metadata/_custom_type_script = "uid://bd046eokvcnu2"
+
+[node name="Body" type="MeshInstance3D" parent="." unique_id=103819521]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+mesh = SubResource("CapsuleMesh_xc2g5")
+
+[node name="Ground Cast" type="RayCast3D" parent="Body" unique_id=1713023476]
+transform = Transform3D(1, 0, 0, 0, 0.2, 0, 0, 0, 1, 0, -0.954, 0)
+debug_shape_thickness = 5
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1769411457]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CapsuleShape3D_wydro")
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="." unique_id=1741235203]
+replication_config = SubResource("SceneReplicationConfig_0u5uq")

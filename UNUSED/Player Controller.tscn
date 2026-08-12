@@ -1,17 +1,17 @@
 [gd_scene format=3 uid="uid://cs5uw5ng78niv"]
 
-[ext_resource type="Script" uid="uid://csjccrhj5wnx7" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_3d.gd" id="1_pvk8e"]
-[ext_resource type="Script" uid="uid://cy3jex7t81k02" path="res://Scripts/player_controller.gd" id="1_t5o4e"]
-[ext_resource type="Shader" uid="uid://bj2few6lgphk6" path="res://Scripts/Shaders/dither_and_gradient_compression.gdshader" id="2_7j8e6"]
-[ext_resource type="Script" uid="uid://8umksf8e80fw" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="2_t5o4e"]
-[ext_resource type="Texture2D" uid="uid://cfhibibv515g0" path="res://Assets/Gradients/Classic Red Palette.png" id="3_7j8e6"]
-[ext_resource type="Script" uid="uid://bd046eokvcnu2" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="4_f4b76"]
-[ext_resource type="Shader" uid="uid://dc4n1tkqmy250" path="res://Scripts/Shaders/moebius.gdshader" id="5_lbck2"]
+[ext_resource type="Script" uid="uid://cy3jex7t81k02" path="res://UNUSED/player_controller.gd" id="1_7vbo8"]
+[ext_resource type="Shader" uid="uid://bj2few6lgphk6" path="res://Scripts/Shaders/dither_and_gradient_compression.gdshader" id="2_x6j6n"]
+[ext_resource type="Texture2D" uid="uid://cfhibibv515g0" path="res://Assets/Gradients/Classic Red Palette.png" id="3_c2wtl"]
+[ext_resource type="Script" uid="uid://bd046eokvcnu2" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="4_ffs04"]
+[ext_resource type="Shader" uid="uid://dc4n1tkqmy250" path="res://Scripts/Shaders/moebius.gdshader" id="5_yglbm"]
+[ext_resource type="Script" uid="uid://csjccrhj5wnx7" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_3d.gd" id="6_ntfu7"]
+[ext_resource type="Script" uid="uid://8umksf8e80fw" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="7_78dfv"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_no5jg"]
-shader = ExtResource("2_7j8e6")
+shader = ExtResource("2_x6j6n")
 shader_parameter/shader_enabled = true
-shader_parameter/palette = ExtResource("3_7j8e6")
+shader_parameter/palette = ExtResource("3_c2wtl")
 shader_parameter/dithering = false
 shader_parameter/dithering_size = 1
 shader_parameter/resolution_scale = 1
@@ -22,14 +22,14 @@ size = Vector3(10, 10, 1)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_7j8e6"]
 render_priority = 0
-shader = ExtResource("5_lbck2")
+shader = ExtResource("5_yglbm")
 shader_parameter/sensitivity = 2.999999932944
 shader_parameter/outline_thickness = 0.0999999977648
 shader_parameter/step_threshold = 0.5999999865888
 shader_parameter/outline_color = Color(0, 0, 0, 1)
 
 [sub_resource type="Resource" id="Resource_rlble"]
-script = ExtResource("2_t5o4e")
+script = ExtResource("7_78dfv")
 duration = 0.5
 transition = 1
 
@@ -55,7 +55,7 @@ properties/4/spawn = true
 properties/4/replication_mode = 1
 
 [node name="Player Controller" type="Node3D" unique_id=1667299940 node_paths=PackedStringArray("player_body", "lower_body_visual", "ground_cast", "climb_checker", "body_collision", "cam", "center_point", "cam_origin", "multiplayer_name") groups=["Player Controller"]]
-script = ExtResource("1_t5o4e")
+script = ExtResource("1_7vbo8")
 player_body = NodePath("Player Body")
 lower_body_visual = NodePath("Body")
 ground_cast = NodePath("Body/Ground Cast")
@@ -96,7 +96,7 @@ fov = 84.117065
 [node name="PhantomCameraHost" type="Node" parent="SubViewportContainer/SubViewport/Camera" unique_id=1412045122]
 process_priority = 300
 process_physics_priority = 300
-script = ExtResource("4_f4b76")
+script = ExtResource("4_ffs04")
 metadata/_custom_type_script = "uid://bd046eokvcnu2"
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Camera" unique_id=348879990]
@@ -116,7 +116,7 @@ spring_length = 4.0
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 0.9999998, 0, 0, 0, 0.9999998, 0.04, 0, 2.091)
 visible = false
-script = ExtResource("1_pvk8e")
+script = ExtResource("6_ntfu7")
 priority = 10
 tween_resource = SubResource("Resource_rlble")
 follow_damping = true
