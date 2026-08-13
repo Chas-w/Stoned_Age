@@ -4,9 +4,9 @@
 [ext_resource type="Shader" uid="uid://bj2few6lgphk6" path="res://Scripts/Shaders/dither_and_gradient_compression.gdshader" id="2_0u5uq"]
 [ext_resource type="Script" uid="uid://bd046eokvcnu2" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="2_htcer"]
 [ext_resource type="Script" uid="uid://csjccrhj5wnx7" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_3d.gd" id="3_dd0ac"]
-[ext_resource type="Texture2D" uid="uid://cfhibibv515g0" path="res://Assets/Gradients/Classic Red Palette.png" id="3_jlvik"]
 [ext_resource type="Script" uid="uid://8umksf8e80fw" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="4_0u5uq"]
 [ext_resource type="Shader" uid="uid://dc4n1tkqmy250" path="res://Scripts/Shaders/moebius.gdshader" id="4_gk6dx"]
+[ext_resource type="Texture2D" uid="uid://c3ua0nj5o26fe" path="res://Assets/Gradients/Ocean Sunset.png" id="5_0u5uq"]
 
 [sub_resource type="Resource" id="Resource_jlvik"]
 script = ExtResource("4_0u5uq")
@@ -14,7 +14,7 @@ script = ExtResource("4_0u5uq")
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_jhyir"]
 shader = ExtResource("2_0u5uq")
 shader_parameter/shader_enabled = true
-shader_parameter/palette = ExtResource("3_jlvik")
+shader_parameter/palette = ExtResource("5_0u5uq")
 shader_parameter/dithering = false
 shader_parameter/dithering_size = 1
 shader_parameter/resolution_scale = 1
@@ -65,6 +65,7 @@ body_mesh = NodePath("Body")
 [node name="Nametag" type="Label3D" parent="." unique_id=1994693494]
 unique_name_in_owner = true
 transform = Transform3D(-1, 0, -8.940697e-08, 0, 1, 0, 8.940697e-08, 0, -1, 0, 2.3475807, 0)
+billboard = 1
 text = "NAME"
 font_size = 42
 

@@ -99,7 +99,6 @@ func _handle_movement(delta):
 		#jump
 		if(Input.is_action_just_pressed("jump")):
 			linear_velocity.y = JUMP_VELOCITY
-			print("jump")
 		#TODO sprint
 		if(Input.is_action_pressed("sprint")):
 			speed = SPRINT_SPEED
@@ -119,7 +118,6 @@ func _handle_movement(delta):
 		# Head bob
 		t_bob += delta * abs(sqrt((linear_velocity.x ** 2 )+ (linear_velocity.z) ** 2)) * float(grounded)
 		p_cam.transform.origin = _headbob(t_bob)
-	
 	if(use_fov_change):
 		# FOV
 		var velocity_clamped = clamp(abs(sqrt((linear_velocity.x ** 2 )+ (linear_velocity.z) ** 2)), 0.5, SPRINT_SPEED * 2)

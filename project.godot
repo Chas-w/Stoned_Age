@@ -29,13 +29,14 @@ window/stretch/aspect="expand"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/godotsteam/plugin.cfg", "res://addons/phantom_camera/plugin.cfg")
+enabled=PackedStringArray("res://addons/csg_terrain/plugin.cfg", "res://addons/godotsteam/plugin.cfg", "res://addons/phantom_camera/plugin.cfg")
 
 [file_customization]
 
 folder_colors={
 "res://Assets/": "purple",
 "res://Scripts/": "teal",
+"res://Terrain/": "yellow",
 "res://UNUSED/": "red"
 }
 
