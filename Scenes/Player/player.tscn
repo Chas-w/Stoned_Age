@@ -1,24 +1,31 @@
 [gd_scene format=3 uid="uid://ctba5uvryw84m"]
 
 [ext_resource type="Script" uid="uid://cdk1l1xatg4gk" path="res://Scripts/Player/player.gd" id="1_mtuoh"]
-[ext_resource type="Shader" uid="uid://bj2few6lgphk6" path="res://Scripts/Shaders/dither_and_gradient_compression.gdshader" id="2_0u5uq"]
 [ext_resource type="Script" uid="uid://bd046eokvcnu2" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="2_htcer"]
 [ext_resource type="Script" uid="uid://csjccrhj5wnx7" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_3d.gd" id="3_dd0ac"]
 [ext_resource type="Script" uid="uid://8umksf8e80fw" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="4_0u5uq"]
+[ext_resource type="Shader" uid="uid://c0cmltoj615n2" path="res://Scripts/Shaders/dither_and_gradient_2.gdshader" id="4_dd0ac"]
 [ext_resource type="Shader" uid="uid://dc4n1tkqmy250" path="res://Scripts/Shaders/moebius.gdshader" id="4_gk6dx"]
-[ext_resource type="Texture2D" uid="uid://c3ua0nj5o26fe" path="res://Assets/Gradients/Ocean Sunset.png" id="5_0u5uq"]
+[ext_resource type="Texture2D" uid="uid://bt47elcjsrylq" path="res://Assets/Gradients/Screenshot 2026-08-12 174812.png" id="5_0u5uq"]
 
 [sub_resource type="Resource" id="Resource_jlvik"]
 script = ExtResource("4_0u5uq")
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_jhyir"]
-shader = ExtResource("2_0u5uq")
-shader_parameter/shader_enabled = true
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_dd0ac"]
+shader = ExtResource("4_dd0ac")
+shader_parameter/texture_mode = 0
+shader_parameter/alpha_mode = 0
+shader_parameter/quantize_size = 0
+shader_parameter/snap_to_world = true
+shader_parameter/limit_subpixels = true
+shader_parameter/dither_enabled = true
+shader_parameter/dither_pattern = 3
+shader_parameter/levels = 21
+shader_parameter/contrast = 1.0
+shader_parameter/brightness = 0.0
+shader_parameter/average = 0.0
+shader_parameter/palette_mode = 1
 shader_parameter/palette = ExtResource("5_0u5uq")
-shader_parameter/dithering = false
-shader_parameter/dithering_size = 1
-shader_parameter/resolution_scale = 1
-shader_parameter/quantization_level = 16
 
 [sub_resource type="BoxMesh" id="BoxMesh_74mp2"]
 size = Vector3(10, 10, 1)
@@ -81,8 +88,7 @@ metadata/_custom_type_script = "uid://csjccrhj5wnx7"
 
 [node name="SubViewportContainer" type="SubViewportContainer" parent="." unique_id=813920420]
 unique_name_in_owner = true
-visible = false
-material = SubResource("ShaderMaterial_jhyir")
+material = SubResource("ShaderMaterial_dd0ac")
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -92,18 +98,18 @@ grow_vertical = 2
 [node name="SubViewport" type="SubViewport" parent="SubViewportContainer" unique_id=720155550]
 handle_input_locally = false
 size = Vector2i(1152, 648)
-render_target_update_mode = 0
+render_target_update_mode = 4
 
 [node name="Camera3D" type="Camera3D" parent="SubViewportContainer/SubViewport" unique_id=2146566821]
 unique_name_in_owner = true
 physics_interpolation_mode = 1
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.67939, 0)
-top_level = true
 cull_mask = 524287
 current = true
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Camera3D" unique_id=1819258933]
 transform = Transform3D(1000, 0, 0, 0, 384.88, 0, 0, 0, 111.85, 0, 0, 0)
+visible = false
 mesh = SubResource("BoxMesh_74mp2")
 surface_material_override/0 = SubResource("ShaderMaterial_oikmp")
 
