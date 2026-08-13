@@ -35,6 +35,7 @@ var t_bob = 0.0
 @export var player_id : int
 @export var multiplayer_name : Label3D
 @export var body_mesh : MeshInstance3D
+@export var vc_output : AudioStreamPlayer3D
 ##this is the player that this instance is controlling
 var main_player := true
 
@@ -63,6 +64,8 @@ func _setup_local_player():
 	else:
 		camera.visible = false
 		main_player = false
+		# We get the index of the "Record" bus.
+
 
 func _ready():
 	_setup_local_player()
@@ -72,6 +75,9 @@ func _unhandled_input(event):
 		head.rotate_y(-event.relative.x * SENSITIVITY)
 		p_cam.rotate_x(-event.relative.y * SENSITIVITY)
 		p_cam.rotation.x = clamp(p_cam.rotation.x, deg_to_rad(-40), deg_to_rad(60))
+
+func _process(delta):
+	pass
 
 func _physics_process(delta):
 	if(main_player):

@@ -86,6 +86,9 @@ script = ExtResource("3_dd0ac")
 tween_resource = SubResource("Resource_jlvik")
 metadata/_custom_type_script = "uid://csjccrhj5wnx7"
 
+[node name="VC_Input" type="AudioListener3D" parent="Head" unique_id=793014444]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.32061005, 0)
+
 [node name="SubViewportContainer" type="SubViewportContainer" parent="." unique_id=813920420]
 unique_name_in_owner = true
 material = SubResource("ShaderMaterial_fvyv6")
@@ -104,6 +107,7 @@ render_target_update_mode = 4
 unique_name_in_owner = true
 physics_interpolation_mode = 1
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.67939, 0)
+top_level = true
 cull_mask = 524287
 current = true
 
@@ -130,6 +134,13 @@ debug_shape_thickness = 5
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1769411457]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("CapsuleShape3D_wydro")
+
+[node name="VC_Output" type="AudioStreamPlayer3D" parent="." unique_id=2040970495]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.50159, -0.66986406)
+unit_size = 15.0
+autoplay = true
+max_distance = 15.0
+bus = &"Record"
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="." unique_id=1741235203]
 replication_config = SubResource("SceneReplicationConfig_0u5uq")
