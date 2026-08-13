@@ -3,39 +3,42 @@
 [ext_resource type="Script" uid="uid://47y23r8uek7m" path="res://Scripts/game_manager.gd" id="1_65wml"]
 [ext_resource type="Script" uid="uid://dnqa7pnc1kwyb" path="res://Scripts/Networks/network_manager.gd" id="2_lrwwn"]
 [ext_resource type="Shader" uid="uid://bwyb8jsf1fjae" path="res://addons/csg_terrain/csg_terrain_shader.gdshader" id="3_5iqf7"]
+[ext_resource type="Shader" uid="uid://dqbq6by4bwaim" path="res://Scripts/Shaders/AuroraSky.gdshader" id="3_e35u1"]
 [ext_resource type="Texture2D" uid="uid://dp6eot6p07igd" path="res://Imports/TEMP/temp other/patern_1_basecolor.png" id="3_fvyv6"]
+[ext_resource type="Texture2D" uid="uid://bt47elcjsrylq" path="res://Assets/Gradients/Screenshot 2026-08-12 174812.png" id="4_5iqf7"]
 
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_pvut4"]
-sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
-ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+[sub_resource type="Gradient" id="Gradient_5iqf7"]
+colors = PackedColorArray(0.047058824, 0.8745098, 1, 1, 0, 0, 1, 1)
 
-[sub_resource type="Sky" id="Sky_o05ts"]
-sky_material = SubResource("ProceduralSkyMaterial_pvut4")
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_hipvn"]
+gradient = SubResource("Gradient_5iqf7")
+fill_from = Vector2(1, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_5iqf7"]
+shader = ExtResource("3_e35u1")
+shader_parameter/equirectangular_sky_texture = SubResource("GradientTexture2D_hipvn")
+shader_parameter/color_gradient = ExtResource("4_5iqf7")
+shader_parameter/brightness = 2.365
+shader_parameter/speed = 0.12
+shader_parameter/height = 46.875
+shader_parameter/scale = 0.58
+
+[sub_resource type="Sky" id="Sky_e35u1"]
+sky_material = SubResource("ShaderMaterial_5iqf7")
 
 [sub_resource type="Environment" id="Environment_65wml"]
 background_mode = 2
-sky = SubResource("Sky_o05ts")
+sky = SubResource("Sky_e35u1")
 glow_enabled = true
 
-[sub_resource type="Gradient" id="Gradient_fvyv6"]
-offsets = PackedFloat32Array(0.450292, 1)
+[sub_resource type="Gradient" id="Gradient_w2cw7"]
+offsets = PackedFloat32Array(0.497076, 1)
 colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_e35u1"]
 noise_type = 0
 frequency = 0.02
 fractal_gain = 1.0
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_5iqf7"]
-noise = SubResource("FastNoiseLite_e35u1")
-color_ramp = SubResource("Gradient_fvyv6")
-seamless = true
-as_normal_map = true
-bump_strength = 4.0
-
-[sub_resource type="Gradient" id="Gradient_w2cw7"]
-offsets = PackedFloat32Array(0.497076, 1)
-colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_f5sk1"]
 noise = SubResource("FastNoiseLite_e35u1")
@@ -46,11 +49,11 @@ seamless = true
 offsets = PackedFloat32Array(0.00986842, 1)
 colors = PackedColorArray(0.39, 0.31538, 0.2808, 1, 0.57, 0.46398, 0.3648, 1)
 
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_hipvn"]
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_w2cw7"]
 frequency = 0.05
 
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_vpl1c"]
-noise = SubResource("FastNoiseLite_hipvn")
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_hipvn"]
+noise = SubResource("FastNoiseLite_w2cw7")
 color_ramp = SubResource("Gradient_5xqn0")
 seamless = true
 
@@ -58,7 +61,7 @@ seamless = true
 offsets = PackedFloat32Array(0.00986842, 1)
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_uet2k"]
-noise = SubResource("FastNoiseLite_hipvn")
+noise = SubResource("FastNoiseLite_w2cw7")
 color_ramp = SubResource("Gradient_n21hv")
 seamless = true
 as_normal_map = true
@@ -68,7 +71,7 @@ bump_strength = 2.0
 offsets = PackedFloat32Array(0, 0.542763)
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_qgn68"]
-noise = SubResource("FastNoiseLite_hipvn")
+noise = SubResource("FastNoiseLite_w2cw7")
 color_ramp = SubResource("Gradient_xaufu")
 seamless = true
 
@@ -114,7 +117,6 @@ shader_parameter/wall_underlay = 4.0
 shader_parameter/ground_scale = Vector2(0.1, 0.1)
 shader_parameter/ground_color = Color(1, 1, 1, 1)
 shader_parameter/ground_albedo = ExtResource("3_fvyv6")
-shader_parameter/ground_normal_map = SubResource("NoiseTexture2D_5iqf7")
 shader_parameter/ground_normal_strenght = 1.0
 shader_parameter/ground_rough_map = SubResource("NoiseTexture2D_f5sk1")
 shader_parameter/ground_roughness = 1.0
@@ -127,7 +129,7 @@ shader_parameter/wall_rough_map = SubResource("NoiseTexture2D_tuldf")
 shader_parameter/wall_roughness = 1.0
 shader_parameter/path_scale = Vector2(0.2, 0.2)
 shader_parameter/path_color = Color(1, 1, 1, 1)
-shader_parameter/path_albedo = SubResource("NoiseTexture2D_vpl1c")
+shader_parameter/path_albedo = SubResource("NoiseTexture2D_hipvn")
 shader_parameter/path_normal_map = SubResource("NoiseTexture2D_uet2k")
 shader_parameter/path_normal_strenght = 1.0
 shader_parameter/path_rough_map = SubResource("NoiseTexture2D_qgn68")

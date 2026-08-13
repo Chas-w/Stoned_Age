@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bt47elcjsrylq"
-path.s3tc="res://.godot/imported/Screenshot 2026-08-12 174812.png-bf05726b7937ccbfa9413d3e2cb2c8a5.s3tc.ctex"
+uid="uid://c8ll5i04yu2d1"
+path.s3tc="res://.godot/imported/quick-sky1-150x150.jpg-f55f1b85d18de71ab181cc73a599284d.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://Assets/Gradients/Screenshot 2026-08-12 174812.png"
-dest_files=["res://.godot/imported/Screenshot 2026-08-12 174812.png-bf05726b7937ccbfa9413d3e2cb2c8a5.s3tc.ctex"]
+source_file="res://Assets/SkyTest Tex/quick-sky1-150x150.jpg"
+dest_files=["res://.godot/imported/quick-sky1-150x150.jpg-f55f1b85d18de71ab181cc73a599284d.s3tc.ctex"]
 
 [params]
 

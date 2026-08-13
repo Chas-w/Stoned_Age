@@ -11,20 +11,20 @@
 [sub_resource type="Resource" id="Resource_jlvik"]
 script = ExtResource("4_0u5uq")
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_dd0ac"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_fvyv6"]
 shader = ExtResource("4_dd0ac")
 shader_parameter/texture_mode = 0
 shader_parameter/alpha_mode = 0
-shader_parameter/quantize_size = 0
+shader_parameter/quantize_size = 2
 shader_parameter/snap_to_world = true
 shader_parameter/limit_subpixels = true
 shader_parameter/dither_enabled = true
-shader_parameter/dither_pattern = 3
-shader_parameter/levels = 21
+shader_parameter/dither_pattern = 1
+shader_parameter/levels = 8
 shader_parameter/contrast = 1.0
 shader_parameter/brightness = 0.0
 shader_parameter/average = 0.0
-shader_parameter/palette_mode = 1
+shader_parameter/palette_mode = 0
 shader_parameter/palette = ExtResource("5_0u5uq")
 
 [sub_resource type="BoxMesh" id="BoxMesh_74mp2"]
@@ -88,7 +88,7 @@ metadata/_custom_type_script = "uid://csjccrhj5wnx7"
 
 [node name="SubViewportContainer" type="SubViewportContainer" parent="." unique_id=813920420]
 unique_name_in_owner = true
-material = SubResource("ShaderMaterial_dd0ac")
+material = SubResource("ShaderMaterial_fvyv6")
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
