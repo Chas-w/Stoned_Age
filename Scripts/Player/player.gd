@@ -4,6 +4,8 @@ extends RigidBody3D
 func _back_to_vars():
 	pass
 
+
+@export_category("Movement")
 var speed
 const WALK_SPEED = 5.0
 const SPRINT_SPEED = 8.0
@@ -67,15 +69,8 @@ func _setup_local_player():
 		main_player = false
 		# We get the index of the "Record" bus.
 
-
 func _ready():
 	_setup_local_player()
-
-func _unhandled_input(event):
-	if event is InputEventMouseMotion && main_player:
-		head.rotate_y(-event.relative.x * SENSITIVITY)
-		p_cam.rotate_x(-event.relative.y * SENSITIVITY)
-		p_cam.rotation.x = clamp(p_cam.rotation.x, deg_to_rad(-40), deg_to_rad(60))
 
 func _process(delta):
 	pass
@@ -85,6 +80,14 @@ func _physics_process(delta):
 		#movement
 		grounded = ground_cast.is_colliding()
 		_handle_movement(delta)
+
+func _input(event):
+	#region Mouse Head Rotation
+	if event is InputEventMouseMotion && main_player:
+			head.rotate_y(-event.relative.x * SENSITIVITY)
+			p_cam.rotate_x(-event.relative.y * SENSITIVITY)
+			p_cam.rotation.x = clamp(p_cam.rotation.x, deg_to_rad(-40), deg_to_rad(60))
+	#endregion
 
 func _headbob(time) -> Vector3:
 	var pos = Vector3.ZERO
