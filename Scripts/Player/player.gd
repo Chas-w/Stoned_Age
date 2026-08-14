@@ -63,6 +63,7 @@ func _setup_local_player():
 		multiplayer_name.set_layer_mask_value(1,false)
 	else:
 		%Camera3D.visible = false
+		%PhantomCamera3D.visible = false
 		main_player = false
 		# We get the index of the "Record" bus.
 
