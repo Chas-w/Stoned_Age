@@ -52,9 +52,9 @@ func _setup_local_player():
 	print("player id " + str(player_id))
 	print("multiplayer id " + str(multiplayer.get_unique_id()))
 	if(multiplayer.get_unique_id() == player_id):
-		camera.make_current()
+		%Camera3D.make_current()
 		%SubViewportContainer.visible = true
-		p_cam.visible = true
+		%PhantomCamera3D.visible = true
 		multiplayer_name.text = Steam.getPersonaName()
 		#cull these from main camera
 		body_mesh.set_layer_mask_value(20,true)
@@ -62,7 +62,7 @@ func _setup_local_player():
 		multiplayer_name.set_layer_mask_value(20,true)
 		multiplayer_name.set_layer_mask_value(1,false)
 	else:
-		camera.visible = false
+		%Camera3D.visible = false
 		main_player = false
 		# We get the index of the "Record" bus.
 

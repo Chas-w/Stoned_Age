@@ -70,13 +70,6 @@ enum Interact_State{Talk, Inspect, In_Menu, In_Minigame, Null}
 @export var player_id : int
 @export var multiplayer_name : Label3D
 
-
-func _enter_tree():
-	_load_in()
-
-func _ready():
-	_setup_local_player()
-
 func _setup_local_player():
 	player_id = get_multiplayer_authority()
 	print("player id " + str(player_id))
@@ -86,6 +79,7 @@ func _setup_local_player():
 		%SubViewportContainer.visible = true
 		%"Default Cam".visible = true
 		print(cam)
+		print(player_id)
 	else:
 		%Camera.visible = false
 
@@ -95,6 +89,13 @@ func _load_in():
 	speed = WALK_SPEED
 	stamina = max_stamina
 	set_multiplayer_authority(name.to_int())
+
+func _enter_tree():
+	_load_in()
+
+func _ready():
+	_setup_local_player()
+
 
 func _process(delta):
 	
