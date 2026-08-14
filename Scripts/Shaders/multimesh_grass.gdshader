@@ -2,7 +2,12 @@ shader_type spatial;
 render_mode cull_disabled, diffuse_toon, specular_schlick_ggx;
 // Nice Shader by @_Malido ^^
 // credit and ref: https://godotshaders.com/shader/stylized-multimesh-grass-shader/
+const int TOTAL_GRASS_VARIANTS = 4;
+uniform sampler2D variants[TOTAL_GRASS_VARIANTS];
+uniform bool billboard_y = false;
 
+// 'instance' keyword is only for Vulkan rendering drivers and allows multiple grass variants with the same material
+instance uniform int variant_index;
 uniform vec3 top_color: source_color;
 uniform vec3 bottom_color: source_color;
 uniform float ambient_occlusion_factor: hint_range(0.0, 1.0, 0.01) = 0.3;
@@ -15,12 +20,16 @@ uniform float wind_strength: hint_range(0.0, 1.0, 0.01) = 0.3;
 uniform sampler2D wind_noise; // Periln FBM Noise looks Best
 uniform float wind_noise_size: hint_range(0.0, 1.0, 0.001) = 0.05; // high values dont work well
 uniform float wind_noise_speed: hint_range(0.0, 1.0, 0.001) = 0.1;
-uniform sampler2D grass_tex;
 
 // Instance the Player Position through a GDScript in the _physics_process
 instance uniform vec3 player_position;
 
 void vertex() {
+	if(billboard_y){
+		MODELVIEW_MATRIX = VIEW_MATRIX * mat4(vec4(normalize(cross(vec3(0.0, 1.0, 0.0), INV_VIEW_MATRIX[2].xyz)), 0.0), vec4(0.0, 1.0, 0.0, 0.0), vec4(normalize(cross(INV_VIEW_MATRIX[0].xyz, vec3(0.0, 1.0, 0.0))), 0.0), MODEL_MATRIX[3]);
+	}
+
+	
 	vec3 world_position = (MODEL_MATRIX * vec4(VERTEX, 1.0)).xyz;
 	
 	vec3 wind_texture = texture(wind_noise, world_position.xz * wind_noise_size + normalize(-wind_direction.xz) * (TIME + UV.y / 2.5) * wind_noise_speed).rgb;
@@ -53,7 +62,7 @@ void fragment() {
 	// Apply vertex color to albedo
 	ALBEDO = COLOR.rgb;
 	
-	vec4 detail_mask = texture(grass_tex, UV);
+	vec4 detail_mask = texture(variants[variant_index], UV);
 
 	// Details will look awfull if you try to vertex-color it, so is better to process it here
 	ALBEDO = mix(color, ALBEDO, detail_mask.r);
