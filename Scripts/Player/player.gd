@@ -34,6 +34,9 @@ var t_bob = 0.0
 @onready var p_cam = %PhantomCamera3D
 @onready var camera_cast = %CameraCast
 
+#UI Elements
+@onready var interaction_text = %InteractionText
+
 @export_category("Multiplayer")
 @export var player_id : int
 @export var multiplayer_name : Label3D
@@ -72,12 +75,21 @@ func _setup_local_player():
 
 func _ready():
 	_setup_local_player()
+	interaction_text.text = ""
 
 func _process(delta):
 	#Pick up objects logic
 	if camera_cast.is_colliding():
 		var collider = camera_cast.get_collider()
-		#print(collider.name)
+		interaction_text.text = "press 'e' to pick up."
+		
+		#Pick objects up with "E"
+		if Input.is_action_just_pressed("interact"):
+			collider.pick_up()
+			interaction_text.text = ""
+	else:
+		if interaction_text.text != "":
+			interaction_text.text = ""
 
 func _physics_process(delta):
 	if(main_player):

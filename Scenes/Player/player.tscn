@@ -7,6 +7,8 @@
 [ext_resource type="Shader" uid="uid://c0cmltoj615n2" path="res://Scripts/Shaders/dither_and_gradient_2.gdshader" id="4_dd0ac"]
 [ext_resource type="Shader" uid="uid://dc4n1tkqmy250" path="res://Scripts/Shaders/moebius.gdshader" id="4_gk6dx"]
 [ext_resource type="Texture2D" uid="uid://bt47elcjsrylq" path="res://Assets/Gradients/Screenshot 2026-08-12 174812.png" id="5_0u5uq"]
+[ext_resource type="FontFile" uid="uid://d0r3fxyfh4kne" path="res://Assets/Fonts/Jacquard24-Regular.ttf" id="8_jlvik"]
+[ext_resource type="Texture2D" uid="uid://dyjuj7vvcfu43" path="res://Imports/TEMP/temp other/coin.png" id="9_gk6dx"]
 
 [sub_resource type="Resource" id="Resource_jlvik"]
 script = ExtResource("4_0u5uq")
@@ -55,6 +57,14 @@ properties/2/replication_mode = 1
 properties/3/path = NodePath("Nametag:text")
 properties/3/spawn = true
 properties/3/replication_mode = 1
+
+[sub_resource type="LabelSettings" id="LabelSettings_82c14"]
+font = ExtResource("8_jlvik")
+font_size = 35
+outline_size = 5
+outline_color = Color(0, 0, 0, 1)
+shadow_size = 5
+shadow_color = Color(0, 0, 0, 1)
 
 [node name="Player" type="RigidBody3D" unique_id=1534641321 node_paths=PackedStringArray("ground_cast", "multiplayer_name", "body_mesh") groups=["Player"]]
 axis_lock_angular_x = true
@@ -107,7 +117,6 @@ render_target_update_mode = 4
 unique_name_in_owner = true
 physics_interpolation_mode = 1
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.67939, 0)
-top_level = true
 cull_mask = 524287
 current = true
 
@@ -126,6 +135,8 @@ metadata/_custom_type_script = "uid://bd046eokvcnu2"
 [node name="CameraCast" type="RayCast3D" parent="SubViewportContainer/SubViewport/Camera3D" unique_id=892649074]
 unique_name_in_owner = true
 target_position = Vector3(0, 0, -5)
+collision_mask = 2
+collide_with_areas = true
 
 [node name="Body" type="MeshInstance3D" parent="." unique_id=103819521]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
@@ -149,3 +160,25 @@ bus = &"Record"
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="." unique_id=1741235203]
 unique_name_in_owner = true
 replication_config = SubResource("SceneReplicationConfig_0u5uq")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1852411712]
+
+[node name="InteractionText" type="Label" parent="CanvasLayer" unique_id=651429767]
+unique_name_in_owner = true
+offset_left = 305.0
+offset_top = 590.0
+offset_right = 840.0
+offset_bottom = 624.0
+text = "press \"e\" to pick up."
+label_settings = SubResource("LabelSettings_82c14")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Crosshair" type="TextureRect" parent="CanvasLayer" unique_id=301191427]
+unique_name_in_owner = true
+offset_left = 560.0
+offset_top = 304.0
+offset_right = 591.30646
+offset_bottom = 330.0
+texture = ExtResource("9_gk6dx")
+expand_mode = 1
