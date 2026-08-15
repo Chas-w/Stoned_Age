@@ -30,7 +30,7 @@ glow_enabled = true
 
 [sub_resource type="Animation" id="Animation_rj8he"]
 resource_name = "Day to Night"
-length = 119.99000000000001
+length = 119.99
 loop_mode = 1
 step = 0.0333333
 tracks/0/type = "value"
