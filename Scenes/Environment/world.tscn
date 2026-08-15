@@ -133,6 +133,7 @@ noise = SubResource("FastNoiseLite_vpl1c")
 seamless = true
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_5xqn0"]
+noise_type = 3
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_f5sk1"]
 noise = SubResource("FastNoiseLite_5xqn0")
@@ -147,14 +148,14 @@ shader_parameter/roughness = 0.15
 shader_parameter/specular = 0.25
 shader_parameter/depth_distance = 50.0
 shader_parameter/beers_law = 2.80000004172336
-shader_parameter/displacement_strength = 1.80000002682216
-shader_parameter/displacement_scroll_speed = 0.1650000078375
+shader_parameter/displacement_strength = 1.30000001937156
+shader_parameter/displacement_scroll_speed = 0.1
 shader_parameter/displacement_scroll_offset = Vector2(-0.2, 0.3)
 shader_parameter/displacement_scale_offset = 0.5
 shader_parameter/displacement_scale = Vector2(0.04, 0.04)
 shader_parameter/displacement_texture = SubResource("NoiseTexture2D_5xqn0")
-shader_parameter/edge_thickness = 0.3
-shader_parameter/edge_speed = 0.35
+shader_parameter/edge_thickness = 0.2590000123025
+shader_parameter/edge_speed = 0.73200003477
 shader_parameter/edge_noise_scale = Vector2(0.4, 0.4)
 shader_parameter/edge_noise = SubResource("NoiseTexture2D_f5sk1")
 shader_parameter/influence_size = 1.0
@@ -163,12 +164,12 @@ shader_parameter/player_wave_speed = 5.0
 shader_parameter/caustic_size = 2.0
 shader_parameter/caustic_range = 40.0
 shader_parameter/caustic_strength = 0.08
-shader_parameter/ssr_mix_strength = 0.80999998189488
+shader_parameter/ssr_mix_strength = 0.65
 shader_parameter/ssr_travel = 100.0
 shader_parameter/ssr_resolution_near = 1.0
 shader_parameter/ssr_resolution_far = 5.0
 shader_parameter/ssr_tolerance = 1.0
-shader_parameter/refraction_strength = 1.25
+shader_parameter/refraction_strength = 0.11999999731776
 shader_parameter/normal_map_strength = 1.0
 shader_parameter/scroll_speed = 0.3
 shader_parameter/scroll_offset = Vector2(0.1, -0.3)
@@ -329,12 +330,12 @@ wave_size_tall = 5
 frequency = 1.0
 
 [node name="Lake Light" type="OmniLight3D" parent="Water" unique_id=2107457869]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.431831, 6.945793, 17.252953)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.38446045, 10.464293, 16.208626)
 light_color = Color(0.0912345, 1, 0.9966585, 1)
 light_energy = 1.475
 light_size = 1.0
 light_specular = 0.0
-omni_range = 91.177
+omni_range = 63.268833
 omni_attenuation = 0.044
 
 [node name="Water Test" type="MeshInstance3D" parent="Water" unique_id=1988094310]
