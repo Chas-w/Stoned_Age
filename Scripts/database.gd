@@ -21,6 +21,8 @@ var open_inventory : bool
 @export var inventory : Button
 @export var options : Button
 @export var exit_game : Button
+@export var dither_slider : HSlider
+@export var dither_pattern_slider : HSlider
 var saving : bool
 var pause_game : bool
 var open_menu : bool 
@@ -60,9 +62,6 @@ func _process(delta):
 		menu_ui.visible = true
 	#if(Input.is_action_just_pressed("cam_down") || Input.is_action_just_pressed("cam_up") || Input.is_action_just_pressed("cam_left") || Input.is_action_just_pressed("cam_right")):
 		#controller_used = true
-
-func _day_night_cycle():
-	pass
 
 func _update_inventory():
 	var inventory_data = _JSON_to_dictionary(player_inventory_path)

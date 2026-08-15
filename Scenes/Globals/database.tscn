@@ -187,7 +187,7 @@ _data = {
 &"RESET": SubResource("Animation_0wh8c")
 }
 
-[node name="Database" type="Node" unique_id=1463900199 node_paths=PackedStringArray("inventory_ui", "inventory_back", "item_list", "menu_ui", "save_game", "inventory", "options", "exit_game") groups=["Database"]]
+[node name="Database" type="Node" unique_id=1463900199 node_paths=PackedStringArray("inventory_ui", "inventory_back", "item_list", "menu_ui", "save_game", "inventory", "options", "exit_game", "dither_slider", "dither_pattern_slider") groups=["Database"]]
 script = ExtResource("1_3blq3")
 inventory_ui = NodePath("Inventory UI")
 inventory_back = NodePath("Inventory UI/Panel/Inventory Buttons/Inventory Back")
@@ -197,6 +197,8 @@ save_game = NodePath("Menu UI/Panel/Menu Buttons/Save")
 inventory = NodePath("Menu UI/Panel/Menu Buttons/Inventory")
 options = NodePath("Menu UI/Panel/Menu Buttons/Options")
 exit_game = NodePath("Menu UI/Panel/Menu Buttons/Quit")
+dither_slider = NodePath("Menu UI/Panel/Menu Buttons/Dither Slider")
+dither_pattern_slider = NodePath("Menu UI/Panel/Menu Buttons/Dither Pattern Slider")
 
 [node name="Menu UI" type="Control" parent="." unique_id=918783687]
 z_index = 24
@@ -220,14 +222,14 @@ grow_vertical = 2
 z_index = 24
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.056
-anchor_top = 0.133
-anchor_right = 0.35700002
-anchor_bottom = 0.70100003
-offset_left = -0.51200104
-offset_top = -0.18399811
-offset_right = -0.2640381
-offset_bottom = -0.24801636
+anchor_left = 0.33900002
+anchor_top = 0.19600001
+anchor_right = 0.64100003
+anchor_bottom = 0.76400006
+offset_left = 0.47198486
+offset_top = -0.008003235
+offset_right = -0.43200684
+offset_bottom = -0.072052
 
 [node name="Save" type="Button" parent="Menu UI/Panel/Menu Buttons" unique_id=2063179749]
 z_index = 24
@@ -250,7 +252,52 @@ layout_mode = 2
 text = "Quit
 "
 
+[node name="Spacing" type="Label" parent="Menu UI/Panel/Menu Buttons" unique_id=265938923]
+z_index = 24
+layout_mode = 2
+
+[node name="Spacing2" type="Label" parent="Menu UI/Panel/Menu Buttons" unique_id=1894399058]
+z_index = 24
+layout_mode = 2
+
+[node name="Spacing3" type="Label" parent="Menu UI/Panel/Menu Buttons" unique_id=1854672789]
+z_index = 24
+layout_mode = 2
+
+[node name="Dither Amount" type="Label" parent="Menu UI/Panel/Menu Buttons" unique_id=753996020]
+z_index = 24
+layout_mode = 2
+text = "Dither Amount"
+
+[node name="Dither Slider" type="HSlider" parent="Menu UI/Panel/Menu Buttons" unique_id=62926699]
+z_index = 24
+layout_mode = 2
+max_value = 8.0
+value = 2.0
+tick_count = 9
+
+[node name="Spacing4" type="Label" parent="Menu UI/Panel/Menu Buttons" unique_id=1405243249]
+z_index = 24
+layout_mode = 2
+
+[node name="Spacing5" type="Label" parent="Menu UI/Panel/Menu Buttons" unique_id=2039819563]
+z_index = 24
+layout_mode = 2
+
+[node name="Dither Amount2" type="Label" parent="Menu UI/Panel/Menu Buttons" unique_id=43695419]
+z_index = 24
+layout_mode = 2
+text = "Dither Pattern"
+
+[node name="Dither Pattern Slider" type="HSlider" parent="Menu UI/Panel/Menu Buttons" unique_id=841770112]
+z_index = 24
+layout_mode = 2
+max_value = 3.0
+value = 2.0
+tick_count = 4
+
 [node name="Inventory UI" type="Control" parent="." unique_id=1835641062]
+visible = false
 z_index = 24
 layout_mode = 3
 anchors_preset = 15

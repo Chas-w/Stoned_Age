@@ -97,6 +97,9 @@ func _ready():
 	interaction_text.text = ""
 
 func _process(delta):
+	%SubViewportContainer.material.set("shader_parameter/quantize_size", database.dither_slider.value)
+	%SubViewportContainer.material.set("shader_parameter/dither_pattern", database.dither_pattern_slider.value)
+
 	_handle_saving()
 	#Pick up objects logic
 	if camera_cast.is_colliding():
