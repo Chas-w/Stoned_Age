@@ -123,6 +123,10 @@ process_physics_priority = 300
 script = ExtResource("2_htcer")
 metadata/_custom_type_script = "uid://bd046eokvcnu2"
 
+[node name="CameraCast" type="RayCast3D" parent="SubViewportContainer/SubViewport/Camera3D" unique_id=892649074]
+unique_name_in_owner = true
+target_position = Vector3(0, 0, -5)
+
 [node name="Body" type="MeshInstance3D" parent="." unique_id=103819521]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 mesh = SubResource("CapsuleMesh_xc2g5")

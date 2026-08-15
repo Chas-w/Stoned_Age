@@ -32,6 +32,7 @@ var t_bob = 0.0
 @onready var head = %Head
 @onready var camera = %Camera3D
 @onready var p_cam = %PhantomCamera3D
+@onready var camera_cast = %CameraCast
 
 @export_category("Multiplayer")
 @export var player_id : int
@@ -73,7 +74,10 @@ func _ready():
 	_setup_local_player()
 
 func _process(delta):
-	pass
+	#Pick up objects logic
+	if camera_cast.is_colliding():
+		var collider = camera_cast.get_collider()
+		#print(collider.name)
 
 func _physics_process(delta):
 	if(main_player):
