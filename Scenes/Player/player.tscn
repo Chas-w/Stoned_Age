@@ -66,11 +66,12 @@ outline_color = Color(0, 0, 0, 1)
 shadow_size = 5
 shadow_color = Color(0, 0, 0, 1)
 
-[node name="Player" type="RigidBody3D" unique_id=1534641321 node_paths=PackedStringArray("ground_cast", "multiplayer_name", "body_mesh") groups=["Player"]]
+[node name="Player" type="RigidBody3D" unique_id=1534641321 node_paths=PackedStringArray("water_cast", "ground_cast", "multiplayer_name", "body_mesh") groups=["Player"]]
 axis_lock_angular_x = true
 axis_lock_angular_y = true
 axis_lock_angular_z = true
 script = ExtResource("1_mtuoh")
+water_cast = NodePath("Body/Water Cast")
 ground_cast = NodePath("Body/Ground Cast")
 use_fov_change = true
 use_headbob = true
@@ -147,6 +148,11 @@ mesh = SubResource("CapsuleMesh_xc2g5")
 [node name="Ground Cast" type="RayCast3D" parent="Body" unique_id=1713023476]
 transform = Transform3D(1, 0, 0, 0, 0.2, 0, 0, 0, 1, 0, -0.954, 0)
 debug_shape_thickness = 5
+
+[node name="Water Cast" type="RayCast3D" parent="Body" unique_id=1438608242]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.99116063, 0)
+collide_with_areas = true
+collide_with_bodies = false
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1769411457]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)

@@ -11,6 +11,9 @@ const SPRINT_SPEED = 8.0
 const JUMP_VELOCITY = 10
 const SENSITIVITY = 0.004
 
+#Terrain
+@export var water_cast : RayCast3D
+
 #fov variables
 const BASE_FOV = 75.0
 const SPRINT_F_CHANGE = 2
@@ -110,10 +113,12 @@ func _process(delta):
 			interaction_text.text = ""
 
 func _physics_process(delta):
-	if(main_player && !database.pause_game):
-		#movement
-		grounded = ground_cast.is_colliding()
-		_handle_movement(delta)
+	if(main_player):
+		if(!database.pause_game):
+			#movement
+			grounded = ground_cast.is_colliding()
+			_handle_movement(delta)
+		_handle_water_check(delta)
 
 func _input(event):
 	#region Mouse Head Rotation
@@ -167,6 +172,9 @@ func _handle_movement(delta):
 		var velocity_clamped = clamp(abs(sqrt((linear_velocity.x ** 2 )+ (linear_velocity.z) ** 2)), 0.5, SPRINT_SPEED * 2)
 		var target_fov = BASE_FOV + fov_change * velocity_clamped
 		camera.fov = lerp(camera.fov, target_fov, delta * 8.0)
+
+func _handle_water_check(delta):
+	pass
 
 func _handle_adding_inventory(target_item): ##handles adding an item to your inventory
 	if(!target_item.permanent):

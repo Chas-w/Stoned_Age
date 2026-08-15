@@ -88,6 +88,10 @@ func _check_raycast(ray : RayCast3D, group : String):
 		var collision = ray.get_collider()
 		if(collision != null && collision.is_in_group(group)):
 			return true
+	if(ray.collide_with_areas):
+		var collision = ray.get_collider()
+		if(collision != null && collision.is_in_group(group)):
+			return true
 
 func _quit_game():
 	get_tree().quit()

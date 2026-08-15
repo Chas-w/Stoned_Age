@@ -52,6 +52,8 @@ folder_colors={
 Player=""
 Player_Container=""
 Database=""
+Land=""
+Water=""
 
 [input]
 
