@@ -4,7 +4,6 @@ extends RigidBody3D
 func _back_to_vars():
 	pass
 
-
 @export_category("Movement")
 var speed
 const WALK_SPEED = 5.0
@@ -36,6 +35,14 @@ var t_bob = 0.0
 
 #UI Elements
 @onready var interaction_text = %InteractionText
+
+@export_category("Player Data Info")
+@export var health : float
+var status_dictionary
+var inventory_dictionary 
+var database
+var time_to_autosave_max = 600
+var autosave_timer
 
 @export_category("Multiplayer")
 @export var player_id : int
@@ -72,12 +79,22 @@ func _setup_local_player():
 		%PhantomCamera3D.visible = false
 		main_player = false
 		# We get the index of the "Record" bus.
+	
+	#JSON stuff
+	for game_obj in get_tree().get_nodes_in_group("Database"): #assign database
+		database = game_obj
+	status_dictionary = database._JSON_to_dictionary(database.player_status_path)
+	inventory_dictionary = database._JSON_to_dictionary(database.player_inventory_path)
+		
+	#spawn location
+	position = Vector3(status_dictionary.Position[0],status_dictionary.Position[1],status_dictionary.Position[2])
 
 func _ready():
 	_setup_local_player()
 	interaction_text.text = ""
 
 func _process(delta):
+	_handle_saving()
 	#Pick up objects logic
 	if camera_cast.is_colliding():
 		var collider = camera_cast.get_collider()
@@ -85,21 +102,22 @@ func _process(delta):
 		
 		#Pick objects up with "E"
 		if Input.is_action_just_pressed("interact"):
-			collider.pick_up()
+			#collider.pick_up()
+			_handle_adding_inventory(collider)
 			interaction_text.text = ""
 	else:
 		if interaction_text.text != "":
 			interaction_text.text = ""
 
 func _physics_process(delta):
-	if(main_player):
+	if(main_player && !database.pause_game):
 		#movement
 		grounded = ground_cast.is_colliding()
 		_handle_movement(delta)
 
 func _input(event):
 	#region Mouse Head Rotation
-	if event is InputEventMouseMotion && main_player:
+	if event is InputEventMouseMotion && main_player && !database.pause_game:
 			head.rotate_y(-event.relative.x * SENSITIVITY)
 			p_cam.rotate_x(-event.relative.y * SENSITIVITY)
 			p_cam.rotation.x = clamp(p_cam.rotation.x, deg_to_rad(-40), deg_to_rad(60))
@@ -149,3 +167,38 @@ func _handle_movement(delta):
 		var velocity_clamped = clamp(abs(sqrt((linear_velocity.x ** 2 )+ (linear_velocity.z) ** 2)), 0.5, SPRINT_SPEED * 2)
 		var target_fov = BASE_FOV + fov_change * velocity_clamped
 		camera.fov = lerp(camera.fov, target_fov, delta * 8.0)
+
+func _handle_adding_inventory(target_item): ##handles adding an item to your inventory
+	if(!target_item.permanent):
+		inventory_dictionary.Removable.append(target_item.ID)
+		target_item.picked_up = true
+	else:
+		#this is called when the player grabs a permanent item
+		pass
+
+func _handle_saving():
+	if (database.saving):
+		_update_JSON_data()
+		print("SAVING...")
+		autosave_timer = time_to_autosave_max
+		database.saving = false
+	if (database.autosave_enabled):
+		_handle_autosave()
+
+func _handle_autosave():
+	if(autosave_timer >= 0):
+		autosave_timer -= get_process_delta_time()
+	else:
+		_update_JSON_data()
+		print("AUTOSAVING...")
+		autosave_timer = time_to_autosave_max
+
+func _update_JSON_data():
+	status_dictionary.Health = health
+	
+	status_dictionary.Position[0] = global_position.x
+	status_dictionary.Position[1] = global_position.y
+	status_dictionary.Position[2] = global_position.z
+	
+	database._save_JSON_file(database.player_status_path, status_dictionary)
+	database._save_JSON_file(database.player_inventory_path, inventory_dictionary)

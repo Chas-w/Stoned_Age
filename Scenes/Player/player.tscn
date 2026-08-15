@@ -107,6 +107,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 
 [node name="SubViewport" type="SubViewport" parent="SubViewportContainer" unique_id=720155550]
 handle_input_locally = false
@@ -117,6 +118,7 @@ render_target_update_mode = 4
 unique_name_in_owner = true
 physics_interpolation_mode = 1
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.67939, 0)
+top_level = true
 cull_mask = 524287
 current = true
 
@@ -180,5 +182,6 @@ offset_left = 560.0
 offset_top = 304.0
 offset_right = 591.30646
 offset_bottom = 330.0
+mouse_filter = 2
 texture = ExtResource("9_gk6dx")
 expand_mode = 1

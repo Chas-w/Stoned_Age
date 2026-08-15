@@ -25,6 +25,7 @@ driver/enable_input=true
 PhantomCameraManager="*uid://duq6jhf6unyis"
 MultiplayerManager="*uid://oe8prn7qtp3x"
 SteamManager="*uid://bup4vc7tm8t6h"
+Database="*uid://d3ubup8w6n2lq"
 
 [display]
 
@@ -40,6 +41,7 @@ enabled=PackedStringArray("res://addons/csg_terrain/plugin.cfg", "res://addons/g
 
 folder_colors={
 "res://Assets/": "purple",
+"res://DATA/": "purple",
 "res://Scripts/": "teal",
 "res://Terrain/": "yellow",
 "res://UNUSED/": "red"
@@ -49,6 +51,7 @@ folder_colors={
 
 Player=""
 Player_Container=""
+Database=""
 
 [input]
 
