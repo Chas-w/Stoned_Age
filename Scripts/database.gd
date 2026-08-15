@@ -3,6 +3,7 @@ extends Node
 var player_status_path = "res://DATA/STATUS.json"
 var player_inventory_path = "res://DATA/INVENTORY.json"
 @export var autosave_enabled : bool
+@export var daytime : bool
 
 @export_category("All Inventory Items")
 @export var permanent_items : Dictionary
@@ -59,6 +60,10 @@ func _process(delta):
 		menu_ui.visible = true
 	#if(Input.is_action_just_pressed("cam_down") || Input.is_action_just_pressed("cam_up") || Input.is_action_just_pressed("cam_left") || Input.is_action_just_pressed("cam_right")):
 		#controller_used = true
+
+func _day_night_cycle():
+	pass
+
 func _update_inventory():
 	var inventory_data = _JSON_to_dictionary(player_inventory_path)
 	for item in inventory_data.Removable.size():
@@ -66,7 +71,6 @@ func _update_inventory():
 		var item_add = Label.new()
 		item_add.text = inventory_data.Removable[item]
 		item_list.add_child(item_add)
-	
 
 func _JSON_to_dictionary(data_path:String): #returns true if JSON contains key
 	var file = FileAccess.get_file_as_string(data_path)

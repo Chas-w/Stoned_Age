@@ -3,36 +3,10 @@
 [ext_resource type="Script" uid="uid://47y23r8uek7m" path="res://Scripts/game_manager.gd" id="1_65wml"]
 [ext_resource type="Script" uid="uid://dnqa7pnc1kwyb" path="res://Scripts/Networks/network_manager.gd" id="2_lrwwn"]
 [ext_resource type="Shader" uid="uid://bwyb8jsf1fjae" path="res://addons/csg_terrain/csg_terrain_shader.gdshader" id="3_5iqf7"]
-[ext_resource type="Shader" uid="uid://dqbq6by4bwaim" path="res://Scripts/Shaders/AuroraSky.gdshader" id="3_e35u1"]
-[ext_resource type="Texture2D" uid="uid://bt47elcjsrylq" path="res://Assets/Gradients/Screenshot 2026-08-12 174812.png" id="4_5iqf7"]
 [ext_resource type="Texture2D" uid="uid://c6dsjyrmp38oy" path="res://Imports/TEMP/temp other/Leaves with grass_Albedo.png" id="6_f5sk1"]
 [ext_resource type="AudioStream" uid="uid://cc3ggulrcjvee" path="res://Imports/TEMP/Audio/483168__kevp888__190809_0562_fr_cricketsandwind.wav" id="8_f5sk1"]
 [ext_resource type="Shader" uid="uid://mvcgr1gk7pwj" path="res://Scripts/Shaders/water.gdshader" id="9_5xqn0"]
 [ext_resource type="Script" uid="uid://balsxsuwosger" path="res://Scripts/Objects/interactable_object.gd" id="12_n21hv"]
-
-[sub_resource type="Gradient" id="Gradient_5iqf7"]
-colors = PackedColorArray(0.047058824, 0.8745098, 1, 1, 0, 0, 1, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_hipvn"]
-gradient = SubResource("Gradient_5iqf7")
-fill_from = Vector2(1, 1)
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_5iqf7"]
-shader = ExtResource("3_e35u1")
-shader_parameter/equirectangular_sky_texture = SubResource("GradientTexture2D_hipvn")
-shader_parameter/color_gradient = ExtResource("4_5iqf7")
-shader_parameter/brightness = 2.365
-shader_parameter/speed = 0.12
-shader_parameter/height = 46.875
-shader_parameter/scale = 0.58
-
-[sub_resource type="Sky" id="Sky_e35u1"]
-sky_material = SubResource("ShaderMaterial_5iqf7")
-
-[sub_resource type="Environment" id="Environment_65wml"]
-background_mode = 2
-sky = SubResource("Sky_e35u1")
-glow_enabled = true
 
 [sub_resource type="Gradient" id="Gradient_5xqn0"]
 offsets = PackedFloat32Array(0.00986842, 1)
@@ -217,13 +191,6 @@ script = ExtResource("1_65wml")
 unique_name_in_owner = true
 script = ExtResource("2_lrwwn")
 _players_spawn_node = NodePath("../Players")
-
-[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1718343630]
-environment = SubResource("Environment_65wml")
-
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=95980601]
-transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
-shadow_enabled = true
 
 [node name="Ground" type="StaticBody3D" parent="." unique_id=91430802]
 transform = Transform3D(200, 0, 0, 0, 1, 0, 0, 0, 200, 0, -1, -16.251139)
