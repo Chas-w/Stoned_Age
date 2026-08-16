@@ -47,6 +47,10 @@ var database
 var time_to_autosave_max = 600
 var autosave_timer
 
+#Inventory
+@export var inventory: Inventory
+
+
 @export_category("Multiplayer")
 @export var player_id : int
 @export var multiplayer_name : Label3D
