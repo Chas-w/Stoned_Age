@@ -9,8 +9,6 @@
 [ext_resource type="AudioStream" uid="uid://cc3ggulrcjvee" path="res://Imports/TEMP/Audio/483168__kevp888__190809_0562_fr_cricketsandwind.wav" id="8_f5sk1"]
 [ext_resource type="Shader" uid="uid://mvcgr1gk7pwj" path="res://Scripts/Shaders/water.gdshader" id="9_5xqn0"]
 [ext_resource type="PackedScene" uid="uid://dn1x1ps55hw1v" path="res://Scenes/Objects/ephedra.tscn" id="9_hipvn"]
-[ext_resource type="Script" uid="uid://cpn5vvvoobabs" path="res://Scripts/Objects/inventory_item.gd" id="10_hipvn"]
-[ext_resource type="Texture2D" uid="uid://dimjjc3j64bqd" path="res://Imports/TEMP/temp other/redberries.png" id="11_vpl1c"]
 
 [sub_resource type="Gradient" id="Gradient_f5sk1"]
 offsets = PackedFloat32Array(0.00986842, 1)
@@ -181,12 +179,6 @@ shader_parameter/normal_map_scale = Vector2(0.1, 0.1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_dyyqa"]
 
-[sub_resource type="Resource" id="Resource_5xqn0"]
-script = ExtResource("10_hipvn")
-name = "Ephedra"
-texture = ExtResource("11_vpl1c")
-metadata/_custom_type_script = "uid://cpn5vvvoobabs"
-
 [node name="World" type="Node3D" unique_id=1340814464]
 
 [node name="Game Manager" type="Node" parent="." unique_id=1116847051]
@@ -351,20 +343,22 @@ surface_material_override/0 = SubResource("ShaderMaterial_oqlhh")
 transform = Transform3D(200, 0, 0, 0, 1, 0, 0, 0, 200, 0, 0, 0)
 shape = SubResource("BoxShape3D_dyyqa")
 
-[node name="InteractableObject" parent="." unique_id=1402295265 instance=ExtResource("8_5xqn0")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 17.982075)
+[node name="Interactables" type="Node3D" parent="." unique_id=1134304704]
 
-[node name="Ephedra" parent="." unique_id=250256377 instance=ExtResource("9_hipvn")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 19.655628)
-item_id = SubResource("Resource_5xqn0")
+[node name="InteractableObject" parent="Interactables" unique_id=1402295265 instance=ExtResource("8_5xqn0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.49317265, 0, 17.982075)
 
-[node name="Ephedra2" parent="." unique_id=1523628958 instance=ExtResource("9_hipvn")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.193661, 0, 19.655628)
-item_id = SubResource("Resource_5xqn0")
+[node name="Ephedra" parent="Interactables" unique_id=250256377 instance=ExtResource("9_hipvn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.49317265, 0, 19.655628)
 
-[node name="Ephedra3" parent="." unique_id=1730677127 instance=ExtResource("9_hipvn")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.5477257, 0, 19.655628)
-item_id = SubResource("Resource_5xqn0")
+[node name="Ephedra2" parent="Interactables" unique_id=1080127246 instance=ExtResource("9_hipvn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.4514313, 0, 19.655628)
+
+[node name="Ephedra3" parent="Interactables" unique_id=587408758 instance=ExtResource("9_hipvn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.8269815, 0, 19.655628)
+
+[node name="Ephedra4" parent="Interactables" unique_id=724295367 instance=ExtResource("9_hipvn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.394322, 0, 19.655628)
 
 [connection signal="pressed" from="Multiplayer HUD/Panel/VBoxContainer/Host" to="Game Manager" method="attempt_host"]
 [connection signal="pressed" from="Multiplayer HUD/Panel/VBoxContainer/Join As Client" to="Game Manager" method="attempt_join_as_client"]
