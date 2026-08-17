@@ -34,6 +34,10 @@ func update_slots():
 	for i in range(min(inventory.slots.size(), slots.size())):
 		slots[i].update(inventory.slots[i])
 
+#WILL BE Called in Player
+func can_pick_up(item: InvItem) -> bool:
+	return inventory.can_pick_up(item)
+
 func insert_item(new_item: InvItem):
 	if new_item != null:
 		inventory.insert(new_item)

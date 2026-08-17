@@ -12,6 +12,18 @@ func setup_inventory(size: int = 8):
 		var new_slot = InvSlot.new()
 		slots.append(new_slot)
 
+func can_pick_up(item: InvItem) -> bool:
+	#Can it add to another slot?
+	var itemslots = slots.filter(func(slot): return slot.item == item)
+	if !itemslots.is_empty():
+		return true
+	#Is there an empty slot open?
+	for i in range(slots.size()):
+		if slots[i].item == null:
+			return true
+	#No where for it to go
+	return false
+
 func insert(item: InvItem):
 	var itemslots = slots.filter(func(slot): return slot.item == item)
 	#Is this item already in a slot?
