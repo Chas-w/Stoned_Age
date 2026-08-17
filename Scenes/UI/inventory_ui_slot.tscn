@@ -1,7 +1,18 @@
 [gd_scene format=3 uid="uid://bim2rmyf2w42i"]
 
-[node name="InventoryUISlot" type="Panel" unique_id=1888089578]
-offset_right = 40.0
-offset_bottom = 40.0
+[ext_resource type="Texture2D" uid="uid://b5mou04gnkh1s" path="res://icon.svg" id="1_b0u83"]
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1535795895]
+[node name="InventoryUISlot" type="Panel" unique_id=1888089578]
+self_modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(200, 200)
+custom_maximum_size = Vector2(500, 500)
+offset_right = 200.0
+offset_bottom = 200.0
+size_flags_horizontal = 6
+size_flags_vertical = 6
+
+[node name="SlotBackground" type="Sprite2D" parent="." unique_id=1535795895]
+self_modulate = Color(1, 0, 1, 1)
+position = Vector2(100, 100)
+scale = Vector2(1.5625, 1.5625)
+texture = ExtResource("1_b0u83")
