@@ -42,7 +42,7 @@ var inventory_ui
 
 @export_category("Player Data Info")
 @export var health : float
-@export var inventory_size : int = 8
+@export var inventory_size : int = 8 #DO NOT CHANGE
 var status_dictionary
 var inventory_dictionary 
 var database
