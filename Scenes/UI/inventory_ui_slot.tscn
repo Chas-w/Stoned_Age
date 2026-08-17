@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://bim2rmyf2w42i"]
 
 [ext_resource type="Texture2D" uid="uid://b5mou04gnkh1s" path="res://icon.svg" id="1_b0u83"]
+[ext_resource type="Script" uid="uid://diqcm1tqycfrk" path="res://Scripts/Player/inventory_ui_slot.gd" id="1_ivhch"]
 
 [node name="InventoryUISlot" type="Panel" unique_id=1888089578]
 self_modulate = Color(1, 1, 1, 0)
@@ -10,9 +11,16 @@ offset_right = 200.0
 offset_bottom = 200.0
 size_flags_horizontal = 6
 size_flags_vertical = 6
+script = ExtResource("1_ivhch")
 
 [node name="SlotBackground" type="Sprite2D" parent="." unique_id=1535795895]
 self_modulate = Color(1, 0, 1, 1)
 position = Vector2(100, 100)
 scale = Vector2(1.5625, 1.5625)
+texture = ExtResource("1_b0u83")
+
+[node name="ItemDisplay" type="Sprite2D" parent="." unique_id=1480517919]
+self_modulate = Color(0.21960784, 1, 0.40392157, 1)
+position = Vector2(101, 99)
+scale = Vector2(1.3203125, 1.3203125)
 texture = ExtResource("1_b0u83")
