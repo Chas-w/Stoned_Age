@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://cf334cj3hyu56" path="res://Scripts/Player/inventory_ui.gd" id="1_p83af"]
 [ext_resource type="PackedScene" uid="uid://bim2rmyf2w42i" path="res://Scenes/UI/inventory_ui_slot.tscn" id="2_hcmni"]
 
-[node name="Inventory_UI" type="Control" unique_id=777426713]
+[node name="InventoryUI" type="Control" unique_id=777426713]
 custom_minimum_size = Vector2(1152, 648)
 layout_mode = 3
 anchors_preset = 15

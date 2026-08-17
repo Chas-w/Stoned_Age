@@ -199,4 +199,5 @@ mouse_filter = 2
 texture = ExtResource("9_gk6dx")
 expand_mode = 1
 
-[node name="Inventory_UI" parent="CanvasLayer" unique_id=777426713 instance=ExtResource("10_jhyir")]
+[node name="InventoryUI" parent="CanvasLayer" unique_id=777426713 instance=ExtResource("10_jhyir")]
+unique_name_in_owner = true

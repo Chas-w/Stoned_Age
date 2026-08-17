@@ -38,18 +38,16 @@ var t_bob = 0.0
 
 #UI Elements
 @onready var interaction_text = %InteractionText
+@onready var inventory_ui = %InventoryUI
 
 @export_category("Player Data Info")
 @export var health : float
+@export var inventory_size : int = 8
 var status_dictionary
 var inventory_dictionary 
 var database
 var time_to_autosave_max = 600
 var autosave_timer
-
-#Inventory
-@export var inventory: Inventory
-
 
 @export_category("Multiplayer")
 @export var player_id : int
@@ -98,6 +96,9 @@ func _setup_local_player():
 
 func _ready():
 	_setup_local_player()
+	
+	#Setup UI and Inventory
+	inventory_ui.setup_inventory()
 	interaction_text.text = ""
 
 func _process(delta):
@@ -105,19 +106,8 @@ func _process(delta):
 	%SubViewportContainer.material.set("shader_parameter/dither_pattern", database.dither_pattern_slider.value)
 
 	_handle_saving()
-	#Pick up objects logic
-	if camera_cast.is_colliding():
-		var collider = camera_cast.get_collider()
-		interaction_text.text = "press 'e' to pick up."
-		
-		#Pick objects up with "E"
-		if Input.is_action_just_pressed("interact"):
-			#collider.pick_up()
-			_handle_adding_inventory(collider)
-			interaction_text.text = ""
-	else:
-		if interaction_text.text != "":
-			interaction_text.text = ""
+	_handle_picking_up()
+	
 
 func _physics_process(delta):
 	if(main_player):
@@ -134,6 +124,23 @@ func _input(event):
 			p_cam.rotate_x(-event.relative.y * SENSITIVITY)
 			p_cam.rotation.x = clamp(p_cam.rotation.x, deg_to_rad(-40), deg_to_rad(60))
 	#endregion
+
+#region Inventory
+func _handle_picking_up():
+	#Found object to grab
+	if camera_cast.is_colliding():
+		var collider = camera_cast.get_collider()
+		interaction_text.text = "press 'e' to pick up."
+		
+		#Pick objects up with "E"
+		if Input.is_action_just_pressed("interact"):
+			_handle_adding_inventory(collider)
+			interaction_text.text = ""
+	#Did not find an object
+	else:
+		if interaction_text.text != "":
+			interaction_text.text = ""
+#endregion
 
 func _headbob(time) -> Vector3:
 	var pos = Vector3.ZERO
@@ -185,8 +192,8 @@ func _handle_water_check(delta):
 
 func _handle_adding_inventory(target_item): ##handles adding an item to your inventory
 	if(!target_item.permanent):
-		inventory_dictionary.Removable.append(target_item.ID)
-		target_item.picked_up = true
+		#inventory_dictionary.Removable.append(target_item.ID)
+		inventory_ui.insert_item(target_item.pick_up())
 	else:
 		#this is called when the player grabs a permanent item
 		pass
