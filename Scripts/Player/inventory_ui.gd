@@ -16,10 +16,12 @@ func _process(delta: float) -> void:
 		if is_open:
 			close()
 			database.pause_game = false
+			Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 		else:
 			open()
 			database.pause_game = true
 			update_slots()
+			Input.mouse_mode = Input.MOUSE_MODE_CONFINED
 
 #Called in "_ready()" in player.gd
 func setup_inventory(size: int = 8):
@@ -44,7 +46,6 @@ func insert_item(new_item: InvItem):
 func open():
 	visible = true
 	is_open = true
-	Input.mouse_mode = Input.MOUSE_MODE_CONFINED
 
 func close():
 	visible = false
