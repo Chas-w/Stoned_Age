@@ -12,8 +12,9 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	if (picked_up):
-		queue_free()
+		visible = false
+		#queue_free()
 
 func pick_up() -> InvItem:
-	queue_free()
+	picked_up = true
 	return item_id

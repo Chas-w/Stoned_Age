@@ -1,6 +1,7 @@
 [gd_scene format=4 uid="uid://biwh4nch7tw0g"]
 
 [ext_resource type="Script" uid="uid://47y23r8uek7m" path="res://Scripts/game_manager.gd" id="1_65wml"]
+[ext_resource type="PackedScene" uid="uid://d3ubup8w6n2lq" path="res://Scenes/Globals/database.tscn" id="1_hipvn"]
 [ext_resource type="Script" uid="uid://dnqa7pnc1kwyb" path="res://Scripts/Networks/network_manager.gd" id="2_lrwwn"]
 [ext_resource type="Shader" uid="uid://bwyb8jsf1fjae" path="res://addons/csg_terrain/csg_terrain_shader.gdshader" id="3_5iqf7"]
 [ext_resource type="Script" uid="uid://dpxy8xquxvntr" path="res://Scripts/water_behavior.gd" id="6_5xqn0"]
@@ -192,6 +193,8 @@ shader_parameter/normal_map_scale = Vector2(0.1, 0.1)
 [sub_resource type="BoxShape3D" id="BoxShape3D_dyyqa"]
 
 [node name="World" type="Node3D" unique_id=1340814464]
+
+[node name="Database" parent="." unique_id=1463900199 instance=ExtResource("1_hipvn")]
 
 [node name="Game Manager" type="Node" parent="." unique_id=1116847051]
 script = ExtResource("1_65wml")
