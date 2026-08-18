@@ -15,5 +15,5 @@ func _process(delta: float) -> void:
 		queue_free()
 
 func pick_up() -> InvItem:
-	queue_free()
+	picked_up = true
 	return item_id

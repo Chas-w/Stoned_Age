@@ -83,6 +83,7 @@ func _setup_local_player():
 		%Camera3D.visible = false
 		%PhantomCamera3D.visible = false
 		main_player = false
+		inventory_ui.visible = false
 		# We get the index of the "Record" bus.
 	
 	#JSON stuff
