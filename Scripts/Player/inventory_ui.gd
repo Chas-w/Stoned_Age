@@ -6,18 +6,19 @@ extends Control
 var inventory: Inventory
 
 var is_open = false
-
+@export var database : Node
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	close()
-
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	if Input.is_action_just_pressed("inventory"):
+	if (Input.is_action_just_pressed("inventory") && !database.menu_ui.visible):
 		if is_open:
 			close()
+			database.pause_game = false
 		else:
 			open()
+			database.pause_game = true
 			update_slots()
 
 #Called in "_ready()" in player.gd
@@ -43,6 +44,7 @@ func insert_item(new_item: InvItem):
 func open():
 	visible = true
 	is_open = true
+	Input.mouse_mode = Input.MOUSE_MODE_CONFINED
 
 func close():
 	visible = false

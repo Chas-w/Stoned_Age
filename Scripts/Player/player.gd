@@ -38,7 +38,7 @@ var t_bob = 0.0
 
 #UI Elements
 @onready var interaction_text = %InteractionText
-@onready var inventory_ui = %InventoryUI
+var inventory_ui
 
 @export_category("Player Data Info")
 @export var health : float
@@ -98,6 +98,7 @@ func _ready():
 	_setup_local_player()
 	
 	#Setup UI and Inventory
+	inventory_ui = database.inventory_ui
 	inventory_ui.setup_inventory()
 	interaction_text.text = ""
 
@@ -192,7 +193,7 @@ func _handle_water_check(delta):
 
 func _handle_adding_inventory(target_item): ##handles adding an item to your inventory
 	if(!target_item.permanent):
-		#inventory_dictionary.Removable.append(target_item.ID)
+		inventory_dictionary.Removable.append(target_item.ID)
 		inventory_ui.insert_item(target_item.pick_up())
 	else:
 		#this is called when the player grabs a permanent item
